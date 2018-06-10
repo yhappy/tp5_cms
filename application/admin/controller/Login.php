@@ -10,4 +10,18 @@ class Login extends Controller
     {
         return $this->fetch('index');
     }
+
+    public function check()
+    {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        if (!trim($username))
+        {
+            return show(0,'输入账号为空');
+        }
+        if (!trim($password))
+        {
+            return show(0,'输入密码为空');
+        }
+    }
 }
