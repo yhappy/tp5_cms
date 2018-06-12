@@ -23,5 +23,6 @@ class Login extends Controller
         {
             return show(0,'输入密码为空');
         }
+        return show(1, '可以校验');
     }
 }
