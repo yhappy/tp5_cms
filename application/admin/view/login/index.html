@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="__STATIC__/css/zui.css"/>
     <script src="__STATIC__/js/jquery.js"></script>
     <script src="__STATIC__/js/zui.js"></script>
-    <script src="__STATIC__/js/admin/login.js"></script>
+    <script src="__STATIC__/js/layer/layer.js"></script>
 </head>
 <body>
 <div class="container container-fixed-xs">
@@ -24,11 +24,13 @@
                     <label for="InputPassword" class="required">密码</label>
                     <input type="password" class="form-control" id="InputPassword" placeholder="">
                 </div>
-                <button type="submit" class="btn btn-primary btn" onclick="login.check()">提交</button>
+                <button type="button" class="btn btn-primary" onclick="login.check()">提交</button>
             </form>
         </div>
     </div>
 
 </div>
+<script src="__STATIC__/js/admin/login.js"></script>
+<script src="__STATIC__/js/dialog/dialog.js"></script>
 </body>
 </html>

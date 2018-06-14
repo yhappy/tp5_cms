@@ -20,3 +20,8 @@ function show($status, $message, $data = array())
 
     exit(json_encode($result));
 }
+
+function getMD5WithSalt(string $input)
+{
+    return md5($input . config('MD5_SALT'));
+}

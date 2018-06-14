@@ -9,5 +9,7 @@
 return[
     'view_replace_str'=>[
         '__STATIC__'=>'/tp5/public/static',
-    ]
+    ],
+    'MD5_SALT' => 'TP5_CMS',
+
 ];

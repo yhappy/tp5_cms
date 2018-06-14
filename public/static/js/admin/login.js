@@ -3,22 +3,29 @@
 * */
 
 var login = {
-    check : function () {
-    //    获取登陆的账户和密码
+    check: function () {
+        //    获取登陆的账户和密码
         var username = $('#InputAccount').val();
         var password = $('#InputPassword').val();
 
-        if(!username){
-            alert('username not exit');
+        if (!username) {
+            layer.alert('username not exit');
+            return;
         }
-        if(!password){
-            alert('password not exit');
+        if (!password) {
+            layer.alert('password not exit');
+            return
         }
 
         var url = "/tp5/public/admin/Login/check";
         var data = {'username': username, 'password': password};
         $.post(url, data, function (result) {
-            alert(result.message)
+            if (result.status == 0) {
+                dialog.error(result.message);
+            }
+            if (result.status == 1) {
+                dialog.success(result.message,'/tp5/public/admin');
+            }
         }, 'JSON');
     }
 }
