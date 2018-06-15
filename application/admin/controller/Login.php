@@ -9,6 +9,10 @@ class Login extends Controller
 {
     public function index()
     {
+//        if (session('adminUser'))
+//        {
+//            $this->redirect(config('__ADMIN__'));
+//        }
         return $this->fetch('index');
     }
 
@@ -27,8 +31,11 @@ class Login extends Controller
         if (!$getpwd)
             return show(0, '用户不存在');
         if ($getpwd->password == getMD5WithSalt($password))
+        {
             session('adminUser', $getpwd->username);
             return show(1, '密码正确');
+        }
+
         return show(0, '密码错误');
 
     }

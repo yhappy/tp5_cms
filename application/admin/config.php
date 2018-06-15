@@ -11,5 +11,6 @@ return[
         '__STATIC__'=>'/tp5/public/static',
     ],
     'MD5_SALT' => 'TP5_CMS',
+    '__ADMIN__' => '/tp5/public/admin',
 
 ];

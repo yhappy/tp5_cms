@@ -9,8 +9,7 @@ Class Index extends Controller
 {
     public function index()
     {
-        $res = config('MD5_SALT');
-        dump(md5('1' . $res));
+        return $this->fetch();
     }
 }
 
