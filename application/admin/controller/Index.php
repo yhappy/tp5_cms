@@ -2,10 +2,8 @@
 
 namespace app\admin\controller;
 
-use think\controller;
-use app\admin\model\admin;
 
-Class Index extends Controller
+Class Index extends CommonController
 {
     public function index()
     {
