@@ -21,12 +21,16 @@ class Login extends Controller
             $this->redirect(config('__ADMIN__'));
         return $this->fetch('index');
     }
-    
+
     /**
      *  check
      */
     public function check()
     {
+        if (!isset($_POST))
+            {
+                return $this->index();
+            }
         $username = $_POST['username'];
         $password = $_POST['password'];
         if (!trim($username)) {

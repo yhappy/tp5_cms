@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+{include file="index/head" /}
+<body>
+<div class="wrapper">
+    {include file="index/header" /}
+    {include file="index/sidebar" /}
+
+
+    <div class="content-wrapper">
+        <div class="content-header">
+            <ul class="breadcrumb">
+                <li><a href="__ADMIN__"><i class="icon icon-home"></i></a></li>
+                <li><a href="__ADMIN__/menu/list"> 菜单管理</a></li>
+                <li class="active"> 添加</li>
+            </ul>
+        </div>
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">添加</div>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" id="form_add">
+                            <div class="form-group">
+                                <label for="menu_name" class="col-sm-2">菜单:</label>
+                                <div class="col-md-6 col-sm-10">
+                                    <input type="text" class="form-control" id="menu_name" name="menu_name"
+                                           placeholder="菜单的名字">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2">菜单类型:</label>
+                                <div class="col-md-6 col-sm-10">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="menu_type">后台菜单
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="menu_type">前台栏目
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="model_name" class="col-sm-2">模块:</label>
+                                <div class="col-md-6 col-sm-10">
+                                    <input type="text" class="form-control" id="model_name" name="model_name"
+                                           placeholder="模块名称">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="controller_name" class="col-sm-2">控制器:</label>
+                                <div class="col-md-6 col-sm-10">
+                                    <input type="text" class="form-control" id="controller_name" name="controller_name"
+                                           placeholder="控制器的名称">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="func_name" class="col-sm-2">方法:</label>
+                                <div class="col-md-6 col-sm-10">
+                                    <input type="text" class="form-control" id="func_name" name="func_name"
+                                           placeholder="方法名称">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2">状态:</label>
+                                <div class="col-md-6 col-sm-10">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="status">开启
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="status">关闭
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="button" class="btn btn-primary" id="btn_submit">提交</button>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{include file="index/footer" /}
+<script>
+    var SCOPE = {"url_add_post": "__ADMIN__/menu/add"};
+</script>
+
+</body>
+</html>

@@ -30,4 +30,16 @@ class Menu extends Commoncontroller
     {
         return $this->fetch('index/menu/list');
     }
+
+    /**
+     *   add
+     */
+    public function add()
+    {
+        if (isset($_POST))
+            {
+dump($_POST);
+            }
+        return $this->fetch('index/menu/add');
+    }
 }
