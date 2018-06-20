@@ -34,10 +34,10 @@
                                 <label class="col-sm-2">菜单类型:</label>
                                 <div class="col-md-6 col-sm-10">
                                     <label class="radio-inline">
-                                        <input type="radio" name="menu_type">后台菜单
+                                        <input type="radio" name="menu_type" value="1" checked>后台菜单
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="menu_type">前台栏目
+                                        <input type="radio" name="menu_type" value="0">前台栏目
                                     </label>
                                 </div>
                             </div>
@@ -46,31 +46,31 @@
                                 <label for="model_name" class="col-sm-2">模块:</label>
                                 <div class="col-md-6 col-sm-10">
                                     <input type="text" class="form-control" id="model_name" name="model_name"
-                                           placeholder="模块名称">
+                                           placeholder="模块的名字">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="controller_name" class="col-sm-2">控制器:</label>
                                 <div class="col-md-6 col-sm-10">
                                     <input type="text" class="form-control" id="controller_name" name="controller_name"
-                                           placeholder="控制器的名称">
+                                           placeholder="控制器的名字">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="func_name" class="col-sm-2">方法:</label>
                                 <div class="col-md-6 col-sm-10">
                                     <input type="text" class="form-control" id="func_name" name="func_name"
-                                           placeholder="方法名称">
+                                           placeholder="方法的名字">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2">状态:</label>
+                                <label class="col-sm-2">使用状态:</label>
                                 <div class="col-md-6 col-sm-10">
                                     <label class="radio-inline">
-                                        <input type="radio" name="status">开启
+                                        <input type="radio" name="status" value="1" checked>开启
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="status">关闭
+                                        <input type="radio" name="status" value="0">关闭
                                     </label>
                                 </div>
                             </div>
@@ -80,8 +80,6 @@
                                 </div>
                             </div>
                         </form>
-
-
                     </div>
                 </div>
             </div>

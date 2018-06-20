@@ -36,10 +36,28 @@ class Menu extends Commoncontroller
      */
     public function add()
     {
-        if (isset($_POST))
+        if ($_POST)
+        {
+            if(!(isset($_POST['menu_name']) && $_POST['menu_name']))
             {
-dump($_POST);
+                return show('0','菜单名字不能为空');
             }
+            if(!(isset($_POST['model_name']) && $_POST['model_name']))
+            {
+                return show('0','模块名字不能为空');
+            }
+            if(!(isset($_POST['controller_name']) && $_POST['controller_name']))
+            {
+                return show('0','控制器名字不能为空');
+            }
+            if(!(isset($_POST['func_name']) && $_POST['func_name']))
+            {
+                return show('0','方法名字不能为空');
+            }
+            //添加操作
+            return show('1', '添加成功');
+
+        }
         return $this->fetch('index/menu/add');
     }
 }

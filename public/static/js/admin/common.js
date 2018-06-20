@@ -21,9 +21,12 @@ $("#btn_submit").click(function () {
     $.post(url, postData, function (result) {
         if(result.status == 1)
         {
-            dialog.success("添加成功");
+            dialog.success(result.message,'.');
         }
-        dialog.error("");
-    }, "JSON");
+        if(result.status == 0)
+        {
+            dialog.error(result.message);
+        }
+        }, "JSON");
     console.log(postData);
 })
