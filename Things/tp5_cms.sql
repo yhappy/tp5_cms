@@ -13,18 +13,18 @@ CREATE TABLE `cms_admin` (
 
 CREATE TABLE `cms_menu` (
   `menu_id`   smallint(6) unsigned not null auto_increment,
-  `name`      varchar(40)          not null default ``,
+  `menu_name`      varchar(40)          not null default ``,
   `parentid`  smallint(6)          not null default `0`,
-  `m`         varchar(20)          not null default ``,
-  `c`         varchar(20)          not null default ``,
-  `f`         varchar(20)          not null default ``,
+  `model_name`         varchar(20)          not null default ``,
+  `controller_name`         varchar(20)          not null default ``,
+  `func_name`         varchar(20)          not null default ``,
   `listorder` smallint(6) unsigned not null default `0`,
   `status`    tinyint(1)           not null default `0`,
   `type`      tinyint(1) unsigned  not null default `0`,
   primary key (`menu_id`),
   key `listorder` (`listorder`),
   key `parentid` (`parentid`),
-  key `module` (`m`, `c`, `f`)
+  key `module` (`model_name`, `controller_name`, `func_name`)
 )
   engine = MyISAM
   auto_increment = 1
