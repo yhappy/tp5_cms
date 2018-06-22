@@ -3,7 +3,7 @@
 
 namespace app\admin\controller;
 
-use app\admin\model\admin;
+use app\admin\model\adminModel;
 use think\Controller;
 
 /**
@@ -39,7 +39,7 @@ class Login extends Controller
         if (!trim($password)) {
             return show(0, '输入密码为空');
         }
-        $admin = new admin();
+        $admin = new adminModel();
         $getpwd = $admin->getAdminByUsername($username);
         if (!$getpwd)
             return show(0, '用户不存在');

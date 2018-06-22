@@ -12,23 +12,22 @@ CREATE TABLE `cms_admin` (
 
 
 CREATE TABLE `cms_menu` (
-  `menu_id`   smallint(6) unsigned not null auto_increment,
-  `menu_name`      varchar(40)          not null default ``,
-  `parentid`  smallint(6)          not null default `0`,
-  `model_name`         varchar(20)          not null default ``,
-  `controller_name`         varchar(20)          not null default ``,
-  `func_name`         varchar(20)          not null default ``,
-  `listorder` smallint(6) unsigned not null default `0`,
-  `status`    tinyint(1)           not null default `0`,
-  `type`      tinyint(1) unsigned  not null default `0`,
-  primary key (`menu_id`),
-  key `listorder` (`listorder`),
-  key `parentid` (`parentid`),
-  key `module` (`model_name`, `controller_name`, `func_name`)
-)
-  engine = MyISAM
-  auto_increment = 1
-  default charset = utf8;
+  `menu_id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
+  `menu_name` varchar(40) NOT NULL DEFAULT '',
+  `parentid` smallint(6) NOT NULL DEFAULT '0',
+  `model_name` varchar(20) NOT NULL DEFAULT '',
+  `controller_name` varchar(20) NOT NULL DEFAULT '',
+  `func_name` varchar(20) NOT NULL DEFAULT '',
+  `listorder` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `type` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`menu_id`),
+  KEY `listorder` (`listorder`),
+  KEY `parentid` (`parentid`),
+  KEY `module` (`model_name`,`controller_name`,`func_name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
 
 create table `cms_news` (
   `news_id`          mediumint(8) unsigned not null auto_increment,

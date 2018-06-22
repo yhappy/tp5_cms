@@ -10,9 +10,10 @@ namespace app\admin\model;
 use think\model;
 
 
-class admin extends model
+class AdminModel extends model
 {
-     public function getAdminByUsername($username)
+    protected $table = 'cms_admin';
+     public function getAdminByUsername(string $username)
     {
         return  $this->where('username', $username)->find();
     }

@@ -7,6 +7,7 @@
  */
 
 namespace app\admin\controller;
+use app\admin\model\MenuModel;
 
 /**
  * Class Menu
@@ -55,7 +56,11 @@ class Menu extends Commoncontroller
                 return show('0','方法名字不能为空');
             }
             //添加操作
-            return show('1', '添加成功');
+            $add_result = MenuModel::insert_Menu($_POST);
+            if ($add_result)
+            {
+                return show('1', '添加成功' . $add_result);
+            }
 
         }
         return $this->fetch('index/menu/add');
