@@ -29,6 +29,7 @@ class Menu extends Commoncontroller
      */
     public function list()
     {
+        $this->assign('te', 'tsts');
         return $this->fetch('index/menu/list');
     }
 
@@ -56,11 +57,12 @@ class Menu extends Commoncontroller
                 return show('0','方法名字不能为空');
             }
             //添加操作
-            $add_result = MenuModel::insert_Menu($_POST);
+            $add_result = MenuModel::insertMenu($_POST);
             if ($add_result)
             {
-                return show('1', '添加成功' . $add_result);
+                return show('1', '添加成功');
             }
+            return show('0', '添加失败');
 
         }
         return $this->fetch('index/menu/add');
