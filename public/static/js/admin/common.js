@@ -30,3 +30,8 @@ $("#btn_submit").click(function () {
         }, "JSON");
     console.log(postData);
 })
+
+/*
+添加分页样式
+ */
+$("ul.pagination").addClass("pager");

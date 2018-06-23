@@ -29,8 +29,10 @@ class Menu extends Commoncontroller
      */
     public function list()
     {
-        $menus = MenuModel::getMenus([],1,10);
-        $this->assign('menus', $menus);
+        $map = [];
+        $menus_count = MenuModel::getMenusCount();
+        $paginate = MenuModel::getMenuPaginate($map,4, $menus_count);
+        $this->assign('list', $paginate);
         return $this->fetch('index/menu/list');
     }
 

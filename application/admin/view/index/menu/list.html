@@ -23,13 +23,13 @@
                     </div>
                     <div class="panel-body">
                         <div class="table-tools" style="margin-bottom: 15px;">
-                            <div class="pull-right" style="width: 250px;">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="关键字">
-                                    <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button">搜索</button>
-                                        </span>
-                                </div>
+                            <div class="pull-right input-group" style="width: 190px;">
+                                <span class="input-group-addon">按类型查看</span>
+                                <select class="form-control" tabindex="2">
+                                    <option value="">全部</option>
+                                    <option value="1">后台菜单</option>
+                                    <option value="0">前台栏目</option>
+                                </select>
                             </div>
                             <div class="tools-group">
                                 <a href="#" class="btn btn-primary" id="btn-add"><i class="icon icon-plus-sign"></i> 新增</a>
@@ -54,14 +54,14 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {foreach $menus as $menu}
+                            {foreach list as $menu}
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td>{$menu->menu_id}</td>
                                 <td>{$menu->menu_name}</td>
                                 <td>{$menu->model_name}</td>
-                                <td>{$menu->menu_type}</td>
-                                <td>{$menu->status}</td>
+                                <td>{$menu->menu_type ? '后台菜单' : '前台栏目'}</td>
+                                <td>{$menu->status|getStatus}</td>
                                 <td>{$menu->create_time}</td>
                                 <td>
                                     <a href="#" class="btn btn-xs btn-primary">编辑</a>
@@ -71,6 +71,9 @@
                             {/foreach}
                             </tbody>
                         </table>
+                        <div>
+                        {$list->render()}
+                        </div>
                     </div>
                 </div>
             </div>

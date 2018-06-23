@@ -25,3 +25,14 @@ function getMD5WithSalt(string $input)
 {
     return md5($input . config('MD5_SALT'));
 }
+
+function getStatus($status)
+{
+    switch ($status)
+    {
+        case 1: return "开启";
+        case 0: return "关闭";
+        case -1: return "已删除";
+        default: return "不明";
+    }
+}
