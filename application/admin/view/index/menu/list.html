@@ -54,20 +54,21 @@
                             </tr>
                             </thead>
                             <tbody>
+                            {foreach $menus as $menu}
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td>1</td>
-                                <td>菜单管理</td>
-                                <td>admin</td>
-                                <td>后台菜单</td>
-                                <td>正常</td>
-                                <td>2017-11-10 10:20</td>
+                                <td>{$menu->menu_id}</td>
+                                <td>{$menu->menu_name}</td>
+                                <td>{$menu->model_name}</td>
+                                <td>{$menu->menu_type}</td>
+                                <td>{$menu->status}</td>
+                                <td>{$menu->create_time}</td>
                                 <td>
                                     <a href="#" class="btn btn-xs btn-primary">编辑</a>
                                     <a href="#" class="btn btn-xs btn-danger">删除</a>
-                                    {$te}
                                 </td>
                             </tr>
+                            {/foreach}
                             </tbody>
                         </table>
                     </div>

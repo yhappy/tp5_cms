@@ -29,7 +29,8 @@ class Menu extends Commoncontroller
      */
     public function list()
     {
-        $this->assign('te', 'tsts');
+        $menus = MenuModel::getMenus([],1,10);
+        $this->assign('menus', $menus);
         return $this->fetch('index/menu/list');
     }
 

@@ -20,13 +20,14 @@ class MenuModel extends model
         if (!$menu_array || !is_array($menu_array)) {
             return 0;
         }
+        $menu_array['create_time'] = time();
         $menu = new MenuModel();
         return $menu->save($menu_array);
     }
 
     public static function getMenus(array $map, int $page, int $pagesize)
     {
-        $map['menu_status'] = array('neq', '-1');
+        $map['status'] = array('neq', '-1');
         $menu = new MenuModel();
         return $menu->where($map)->order('menu_id desc')->page($page, $pagesize)->select();
     }
