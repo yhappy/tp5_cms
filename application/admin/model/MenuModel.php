@@ -8,7 +8,7 @@
 
 namespace app\admin\model;
 
-use think\model;
+use think\Model;
 
 
 class MenuModel extends model

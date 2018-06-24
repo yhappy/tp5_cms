@@ -21,7 +21,7 @@ CREATE TABLE `cms_menu` (
   `listorder` smallint(6) unsigned NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `type` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `create_time` int(10) unsigned not null default `0`,
+  `create_time` int(10) unsigned not null default '0',
 
   PRIMARY KEY (`menu_id`),
   KEY `listorder` (`listorder`),

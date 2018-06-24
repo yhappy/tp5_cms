@@ -12,7 +12,7 @@ use think\Controller;
 use think\Request;
 
 
-class Commoncontroller extends Controller
+class CommonController extends Controller
 {
     public function __construct(request $request = null)
     {

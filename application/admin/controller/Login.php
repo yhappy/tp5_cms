@@ -3,9 +3,8 @@
 
 namespace app\admin\controller;
 
-use app\admin\model\adminModel;
+use app\admin\model\AdminModel;
 use think\Controller;
-
 /**
  * Class Login
  * @package app\admin\controller

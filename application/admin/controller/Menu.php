@@ -13,7 +13,7 @@ use app\admin\model\MenuModel;
  * Class Menu
  * @package app\admin\controller
  */
-class Menu extends Commoncontroller
+class Menu extends CommonController
 {
 
     /**
