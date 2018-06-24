@@ -19,15 +19,13 @@ $("#btn_submit").click(function () {
     });
     var url = SCOPE.url_add_post;
     $.post(url, postData, function (result) {
-        if(result.status == 1)
-        {
-            dialog.success(result.message,'.');
+        if (result.status == 1) {
+            dialog.success(result.message, '.');
         }
-        if(result.status == 0)
-        {
+        if (result.status == 0) {
             dialog.error(result.message);
         }
-        }, "JSON");
+    }, "JSON");
     console.log(postData);
 })
 
@@ -35,3 +33,10 @@ $("#btn_submit").click(function () {
 添加分页样式
  */
 $("ul.pagination").addClass("pager");
+
+/*
+改变选择
+*/
+$('select.chosen-select').on('change', function () {
+    console.log(this.value);
+});

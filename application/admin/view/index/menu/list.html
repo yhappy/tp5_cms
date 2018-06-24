@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 {include file="index/head" /}
+<link rel="stylesheet" href="__STATIC__/css/chosen.css"/>
+<script src="__STATIC__/js/chosen.js"></script>
 <body>
 <div class="wrapper">
     {include file="index/header" /}
@@ -23,10 +25,9 @@
                     </div>
                     <div class="panel-body">
                         <div class="table-tools" style="margin-bottom: 15px;">
-                            <div class="pull-right input-group" style="width: 190px;">
-                                <span class="input-group-addon">按类型查看</span>
-                                <select class="form-control" tabindex="2">
-                                    <option value="">全部</option>
+                            <div class="pull-right input-group" style="width: 130px;">
+                                <select class="chosen-select form-control">qwdq
+                                    <option value="-1">全部</option>
                                     <option value="1">后台菜单</option>
                                     <option value="0">前台栏目</option>
                                 </select>
