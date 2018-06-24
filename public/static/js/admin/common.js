@@ -26,7 +26,7 @@ $("#btn_submit").click(function () {
             dialog.error(result.message);
         }
     }, "JSON");
-    console.log(postData);
+    // console.log(postData);
 })
 
 /*
@@ -38,5 +38,16 @@ $("ul.pagination").addClass("pager");
 改变选择
 */
 $('select.chosen-select').on('change', function () {
-    console.log(this.value);
+    // console.log(this.value);
+    var url = SCOPE.url_list_type + this.value;
+    window.location.href = url;
+});
+
+/*
+点击编辑
+ */
+$('.table .btn-edit').click(function(){
+    var url = SCOPE.url_edit + this.id;
+    // console.log(url);
+    window.location.href = url;
 });

@@ -55,7 +55,8 @@ class Login extends Controller
      *  login
      */
     public function logout()
-    {
+    {   
+        cookie('type', null);
         session('adminUser', null);
         $this->redirect(config('__ADMIN__') . '/login');
     }

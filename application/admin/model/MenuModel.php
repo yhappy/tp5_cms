@@ -25,9 +25,8 @@ class MenuModel extends model
         return $menu->save($menu_array);
     }
 
-//可以重构
 
-    public static function getMenusCount()
+    public static function getMenusCount(array $map)
     {
         $map['status'] = array('neq', '-1');
         $menu = new MenuModel();
@@ -39,5 +38,11 @@ class MenuModel extends model
         $map['status'] = array('neq', '-1');
         $menu = new MenuModel();
         return $menu->where($map)->order('menu_id desc')->paginate($size, $count);
+    }
+
+    public static function getMenuById(int $id)
+    {
+        $menu = new MenuModel();
+        return $menu->get($id);
     }
 }

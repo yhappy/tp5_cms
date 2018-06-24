@@ -8,7 +8,6 @@
     {include file="index/header" /}
     {include file="index/sidebar" /}
 
-
     <div class="content-wrapper">
         <div class="content-header">
             <ul class="breadcrumb">
@@ -26,10 +25,10 @@
                     <div class="panel-body">
                         <div class="table-tools" style="margin-bottom: 15px;">
                             <div class="pull-right input-group" style="width: 130px;">
-                                <select class="chosen-select form-control">qwdq
-                                    <option value="-1">全部</option>
-                                    <option value="1">后台菜单</option>
-                                    <option value="0">前台栏目</option>
+                                <select class="chosen-select form-control">
+                                    <option {$type == -1? "selected" : ""} value="-1">全部</option>
+                                    <option {$type == 1 ? "selected" : ""} value="1">后台菜单</option>
+                                    <option {$type == 0 ? "selected" : ""} value="0">前台栏目</option>
                                 </select>
                             </div>
                             <div class="tools-group">
@@ -65,8 +64,8 @@
                                 <td>{$menu->status|getStatus}</td>
                                 <td>{$menu->create_time}</td>
                                 <td>
-                                    <a href="#" class="btn btn-xs btn-primary">编辑</a>
-                                    <a href="#" class="btn btn-xs btn-danger">删除</a>
+                                    <button id="{$menu->menu_id}" class="btn btn-xs btn-primary btn-edit">编辑</button>
+                                    <button class="btn btn-xs btn-danger">删除</button>
                                 </td>
                             </tr>
                             {/foreach}
@@ -86,7 +85,11 @@
 
 {include file="index/footer" /}
 <script>
-    var SCOPE = {"url_add": "__ADMIN__/menu/add"};
+    var SCOPE = {
+        "url_add": "__ADMIN__/menu/add",
+        "url_list_type": "__ADMIN__/menu/list?type=",
+        "url_edit": "__ADMIN__/menu/edit?id=",
+    };
 </script>
 
 </body>
