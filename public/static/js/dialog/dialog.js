@@ -18,4 +18,15 @@ var dialog = {
             },
         });
     },
+    confirm: function (message, url) {
+        layer.open({
+            title: 'CONFIRM!',
+            content: message,
+            icon: 3,
+            skin: 'layui-layer-lan',
+            yes: function () {
+                location.href = url;
+            },
+        });
+    },
 }

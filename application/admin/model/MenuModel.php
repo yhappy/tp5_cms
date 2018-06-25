@@ -25,7 +25,7 @@ class MenuModel extends model
         return $menu->save($menu_array);
     }
 
-    public static function updateMenuById($id, array $menu_array)
+    public static function updateMenuById(int $id, array $menu_array)
     {
         if(!$id || !is_numeric($id))
         {
@@ -33,7 +33,7 @@ class MenuModel extends model
         }
         if(!$menu_array || !is_array($menu_array))
         {
-            exception('更新数据不合法');
+            exception('数据不合法');
         }
         $menu = new MenuModel();
         return $menu->allowField(true)->save($menu_array, ['menu_id' => $id]);

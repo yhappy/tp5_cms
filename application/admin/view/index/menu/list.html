@@ -41,9 +41,7 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th width="30">
-                                    <input type="checkbox">
-                                </th>
+                                <!-- <th width="30"><input type="checkbox"></th> -->
                                 <th class="col-md-1">ID</th>
                                 <th class="col-md-2">菜单名</th>
                                 <th class="col-md-2">模块名</th>
@@ -56,7 +54,7 @@
                             <tbody>
                             {foreach list as $menu}
                             <tr>
-                                <td><input type="checkbox"></td>
+                                <!-- <td><input type="checkbox"></td> -->
                                 <td>{$menu->menu_id}</td>
                                 <td>{$menu->menu_name}</td>
                                 <td>{$menu->model_name}</td>
@@ -65,7 +63,7 @@
                                 <td>{$menu->create_time}</td>
                                 <td>
                                     <button id="{$menu->menu_id}" class="btn btn-xs btn-primary btn-edit">编辑</button>
-                                    <button class="btn btn-xs btn-danger">删除</button>
+                                    <button id="{$menu->menu_id}"  class="btn btn-xs btn-danger btn-delete">删除</button>
                                 </td>
                             </tr>
                             {/foreach}
@@ -89,6 +87,8 @@
         "url_add": "__ADMIN__/menu/add",
         "url_list_type": "__ADMIN__/menu/list?type=",
         "url_edit": "__ADMIN__/menu/edit?id=",
+        "url_delete": "__ADMIN__/menu/delete",
+
     };
 </script>
 

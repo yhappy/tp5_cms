@@ -46,8 +46,39 @@ $('select.chosen-select').on('change', function () {
 /*
 点击编辑
  */
-$('.table .btn-edit').click(function(){
+$('.btn-edit').click(function(){
     var url = SCOPE.url_edit + this.id;
     // console.log(url);
     window.location.href = url;
 });
+
+/*
+点击删除
+ */
+$('.btn-delete').click(function(){
+    var url = SCOPE.url_delete;
+    var id = this.id;
+    var postData ={'id': id};
+    var message = '确定删除ID为'+id+'的数据吗？';
+    console.log(message);
+    layer.open({
+        title: 'CONFIRM!',
+        content: message,
+        icon: 3,
+        skin: 'layui-layer-lan',
+        yes: function(){
+            doDelete(url, postData);
+        }
+    });
+});
+
+var doDelete =  function (url, postData){
+    $.post(url, postData, function (result) {
+        if (result.status == 1) {
+            dialog.success(result.message, '');
+        }
+        if (result.status == 0) {
+            dialog.error(result.message);
+        }
+    }, "JSON");
+}

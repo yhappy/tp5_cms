@@ -113,5 +113,32 @@ class Menu extends CommonController
         }
     }
 
+    /**
+     *   delete
+     */
+    public function delete()
+    {
+        if (!$_POST)
+        {
+            return $this->redirect('list');
+        }
+        elseif (!isset($_POST['id']))
+        {
+            return show('0', '数据有误');
+        }
+        //删除操作，实际上是status变-1
+        $id = $_POST['id'];
+        $del_array = array('status' => '-1');
+        try {
+            $del_result = MenuModel::updateMenuById($id, $del_array);
+            if ($del_result) {
+                return show('1', '删除成功');
+            }
+            return show('0', '删除失败');
+        } catch (Exception $e) {
+            return show('0', $e->getMessage());
+        }
+    }
+
 
 }
