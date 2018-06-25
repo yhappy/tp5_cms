@@ -25,6 +25,20 @@ class MenuModel extends model
         return $menu->save($menu_array);
     }
 
+    public static function updateMenuById($id, array $menu_array)
+    {
+        if(!$id || !is_numeric($id))
+        {
+            exception('ID不合法');
+        }
+        if(!$menu_array || !is_array($menu_array))
+        {
+            exception('更新数据不合法');
+        }
+        $menu = new MenuModel();
+        return $menu->allowField(true)->save($menu_array, ['menu_id' => $id]);
+    }
+
 
     public static function getMenusCount(array $map)
     {
@@ -42,7 +56,11 @@ class MenuModel extends model
 
     public static function getMenuById(int $id)
     {
+        if (!$id || !is_numeric($id))
+        {
+            return 0;
+        }
         $menu = new MenuModel();
-        return $menu->get($id);
+        return $menu->get($id)->find();
     }
 }

@@ -17,7 +17,7 @@ $("#btn_submit").click(function () {
     $(data).each(function (i) {
         postData[this.name] = this.value;
     });
-    var url = SCOPE.url_add_post;
+    var url = SCOPE.url_add;
     $.post(url, postData, function (result) {
         if (result.status == 1) {
             dialog.success(result.message, '.');
