@@ -32,43 +32,46 @@
                                 </select>
                             </div>
                             <div class="tools-group">
+                                <a href="#" class="btn btn-success" id="btn-listorder"><i class="icon icon-check-circle"></i> 排序</a>
                                 <a href="#" class="btn btn-primary" id="btn-add"><i class="icon icon-plus-sign"></i> 新增</a>
-                                <a href="#" class="btn btn-success"><i class="icon icon-check-circle"></i> 启用</a>
                                 <a href="#" class="btn btn-warning"><i class="icon icon-ban-circle"></i> 禁用</a>
                                 <a href="#" class="btn btn-danger"><i class="icon icon-remove-sign"></i> 删除</a>
                             </div>
                         </div>
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <!-- <th width="30"><input type="checkbox"></th> -->
-                                <th class="col-md-1">ID</th>
-                                <th class="col-md-2">菜单名</th>
-                                <th class="col-md-2">模块名</th>
-                                <th class="col-md-2">类型</th>
-                                <th class="col-md-1">状态</th>
-                                <th class="col-md-2">创建时间</th>
-                                <th class="col-md-2">操作</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {foreach list as $menu}
-                            <tr>
-                                <!-- <td><input type="checkbox"></td> -->
-                                <td>{$menu->menu_id}</td>
-                                <td>{$menu->menu_name}</td>
-                                <td>{$menu->model_name}</td>
-                                <td>{$menu->menu_type ? '后台菜单' : '前台栏目'}</td>
-                                <td>{$menu->status|getStatus}</td>
-                                <td>{$menu->create_time}</td>
-                                <td>
-                                    <button id="{$menu->menu_id}" class="btn btn-xs btn-primary btn-edit">编辑</button>
-                                    <button id="{$menu->menu_id}"  class="btn btn-xs btn-danger btn-delete">删除</button>
-                                </td>
-                            </tr>
-                            {/foreach}
-                            </tbody>
-                        </table>
+                        <form id="form_listorder">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th class="col-md-1 col-sm-1 col-xs-1">排序</th>
+                                    <th class="col-md-1 col-sm-1 col-xs-1">ID</th>
+                                    <th class="col-md-2 col-sm-2 col-xs-2">菜单名</th>
+                                    <th class="col-md-2 col-sm-2 col-xs-2">模块名</th>
+                                    <th class="col-md-1 col-sm-1 col-xs-1">类型</th>
+                                    <th class="col-md-1 col-sm-1 col-xs-1">状态</th>
+                                    <th class="col-md-2 col-sm-2 col-xs-2">创建时间</th>
+                                    <th class="col-md-2 col-sm-2 col-xs-2">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {foreach list as $menu}
+
+                                <tr>
+                                    <td><input type="text" name="{$menu->menu_id}" class="form-control" value="{$menu->listorder}"></td>
+                                    <td>{$menu->menu_id}</td>
+                                    <td>{$menu->menu_name}</td>
+                                    <td>{$menu->model_name}</td>
+                                    <td>{$menu->menu_type ? '后台菜单' : '前台栏目'}</td>
+                                    <td>{$menu->status|getStatus}</td>
+                                    <td>{$menu->create_time}</td>
+                                    <td>
+                                        <button id="{$menu->menu_id}" class="btn btn-xs btn-primary btn-edit">编辑</button>
+                                        <button id="{$menu->menu_id}"  class="btn btn-xs btn-danger btn-delete">删除</button>
+                                    </td>
+                                </tr>
+                                {/foreach}
+                                </tbody>
+                            </table>
+                        </form>
                         <div>
                         {$list->render()}
                         </div>
@@ -88,6 +91,8 @@
         "url_list_type": "__ADMIN__/menu/list?type=",
         "url_edit": "__ADMIN__/menu/edit?id=",
         "url_delete": "__ADMIN__/menu/delete",
+        "url_listorder": "__ADMIN__/menu/listorder",
+
 
     };
 </script>

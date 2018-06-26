@@ -51,7 +51,7 @@ class MenuModel extends model
     {
         $map['status'] = array('neq', '-1');
         $menu = new MenuModel();
-        return $menu->where($map)->order('menu_id desc')->paginate($size, $count);
+        return $menu->where($map)->order('listorder desc, menu_id desc')->paginate($size, $count);
     }
 
     public static function getMenuById(int $id)

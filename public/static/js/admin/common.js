@@ -8,6 +8,24 @@ $("#btn-add").click(function () {
 });
 
 /*
+提交排序
+ */
+
+$("#btn-listorder").click(function () {
+    var data = $("#form_listorder").serializeArray();
+    var url = SCOPE.url_listorder;
+    $.post(url, data, function (result) {
+        if (result.status == 1) {
+            dialog.success(result.message, '');
+        }
+        if (result.status == 0) {
+            dialog.error(result.message);
+        }
+    }, "JSON");
+    // console.log(postData);
+});
+
+/*
 提交表单
  */
 
@@ -27,7 +45,7 @@ $("#btn_submit").click(function () {
         }
     }, "JSON");
     // console.log(postData);
-})
+});
 
 /*
 添加分页样式

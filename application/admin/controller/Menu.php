@@ -140,5 +140,25 @@ class Menu extends CommonController
         }
     }
 
-
+    /*
+    update listorder
+     */
+    public function listorder()
+    {
+        if (!$_POST)
+        {
+            return $this->redirect('list');
+        }
+        try {
+            foreach ($_POST as $id => $value) 
+            {
+                $id = intval($id);
+                $result = MenuModel::updateMenuById($id, ['listorder' => $value]);
+                print_r($result);
+            }
+        } catch (Exception $e) {
+            return show(0, $e->getMessage());
+        }
+        return show(1 , "更新排序成功");
+    }
 }
