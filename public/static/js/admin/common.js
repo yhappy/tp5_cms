@@ -66,7 +66,7 @@ $('select.chosen-select').on('change', function () {
  */
 $('.btn-edit').click(function(){
     var url = SCOPE.url_edit + this.id;
-    // console.log(url);
+     console.log(url);
     window.location.href = url;
 });
 

@@ -61,6 +61,6 @@ class MenuModel extends model
             return 0;
         }
         $menu = new MenuModel();
-        return $menu->get($id)->find();
+        return $menu->where('menu_id', $id)->find();
     }
 }

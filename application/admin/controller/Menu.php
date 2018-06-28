@@ -145,6 +145,7 @@ class Menu extends CommonController
      */
     public function listorder()
     {
+        $temp = false;
         if (!$_POST)
         {
             return $this->redirect('list');
@@ -154,11 +155,14 @@ class Menu extends CommonController
             {
                 $id = intval($id);
                 $result = MenuModel::updateMenuById($id, ['listorder' => $value]);
-                print_r($result);
+                $temp = $temp || $result;
             }
         } catch (Exception $e) {
             return show(0, $e->getMessage());
         }
-        return show(1 , "更新排序成功");
+        if ($temp)
+            return show(1 , "更新排序成功");
+        else
+            return show(0 , "更新没有变化");
     }
 }
