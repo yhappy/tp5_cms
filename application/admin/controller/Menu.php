@@ -163,6 +163,6 @@ class Menu extends CommonController
         if ($temp)
             return show(1 , "更新排序成功");
         else
-            return show(0, "没有变化");
+            return show(0 , "更新没有变化");
     }
 }
