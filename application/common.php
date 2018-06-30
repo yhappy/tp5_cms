@@ -36,3 +36,13 @@ function getStatus($status)
         default: return "不明";
     }
 }
+
+function getActive($controller_name)
+{
+    $current_controller = strtolower(request()->controller());
+    if($controller_name == $current_controller)
+    {
+        return "active";
+    }
+    return "";
+}

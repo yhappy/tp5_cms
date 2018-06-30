@@ -21,8 +21,7 @@ class MenuModel extends model
             return 0;
         }
         $menu_array['create_time'] = time();
-        $menu = new MenuModel();
-        return $menu->save($menu_array);
+        return self::save($menu_array);
     }
 
     public static function updateMenuById(int $id, array $menu_array)
@@ -43,15 +42,13 @@ class MenuModel extends model
     public static function getMenusCount(array $map)
     {
         $map['status'] = array('neq', '-1');
-        $menu = new MenuModel();
-        return $menu->where($map)->count();
+        return self::where($map)->count();
     }
 
     public static function getMenuPaginate(array $map,int $size, int $count)
     {
         $map['status'] = array('neq', '-1');
-        $menu = new MenuModel();
-        return $menu->where($map)->order('listorder desc, menu_id desc')->paginate($size, $count);
+        return self::where($map)->order('listorder desc, menu_id desc')->paginate($size, $count);
     }
 
     public static function getMenuById(int $id)
@@ -60,7 +57,13 @@ class MenuModel extends model
         {
             return 0;
         }
-        $menu = new MenuModel();
-        return $menu->where('menu_id', $id)->find();
+        return self::where('menu_id', $id)->find();
+    }
+
+    public static function getAdminMenu()
+    {
+        $map['status'] = array('neq', '-1');
+        $map['menu_type'] = 1;
+        return self::where($map)->order('listorder desc, menu_id desc')->select();
     }
 }
