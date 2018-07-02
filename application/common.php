@@ -42,7 +42,7 @@ function getActive($controller_name)
     $current_controller = strtolower(request()->controller());
     if($controller_name == $current_controller)
     {
-        return "active";
+        return true;
     }
-    return "";
+    return false;
 }

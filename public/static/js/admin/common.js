@@ -55,7 +55,7 @@ $("ul.pagination").addClass("pager");
 /*
 改变选择
 */
-$('select.chosen-select').on('change', function () {
+$('select.menu-select').on('change', function () {
     // console.log(this.value);
     var url = SCOPE.url_list_type + this.value;
     window.location.href = url;

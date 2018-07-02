@@ -19,17 +19,17 @@ $navs = MenuModel::getAdminMenu();
                     <i class="icon icon-file"></i>
                     <span>菜单管理</span>
                     <span class="pull-right-container">
-                        <i class="icon icon-angle-right"></i>
+                        <i class="icon icon-angle-{$Request.controller=="Menu" ? "right": "left"}"></i>
                     </span>
                 </a>
             </li>
             {foreach $navs as $nav}
-            <li class={$nav.controller_name|getActive}>
+            <li class={$nav.controller_name|getActive ?"active": ""}>
                 <a href="__ADMIN__/{$nav.controller_name}/{$nav.func_name}">
                     <i class="icon icon-file"></i>
                     <span>{$nav.menu_name}</span>
                     <span class="pull-right-container">
-                        <i class="icon icon-angle-left"></i>
+                        <i class="icon icon-angle-{$nav.controller_name|getActive ?"right": "left"}"></i>
                     </span>
                 </a>
             </li>
