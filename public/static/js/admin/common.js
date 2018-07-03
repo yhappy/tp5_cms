@@ -78,7 +78,7 @@ $('.btn-delete').click(function(){
     var id = this.id;
     var postData ={'id': id};
     var message = '确定删除ID为'+id+'的数据吗？';
-    console.log(message);
+    // console.log(message);
     layer.open({
         title: 'CONFIRM!',
         content: message,

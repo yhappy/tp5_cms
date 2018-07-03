@@ -33,6 +33,15 @@ class Content extends CommonController
     }
 
     /**
+     *  upload
+     */
+    public function upload()
+    {
+        $file = request()->file('file');
+        dump($file);
+    }
+
+    /**
      *   add
      */
     public function add()

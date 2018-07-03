@@ -93,7 +93,8 @@ class Menu extends CommonController
             $this->assign('menu', $one_menu);
             return $this->fetch('index/menu/edit');
         }
-        return $this->redirect('list');
+
+//        return $this->redirect('list');
     }
 
     /**
@@ -120,7 +121,7 @@ class Menu extends CommonController
     {
         if (!$_POST)
         {
-            return $this->redirect('list');
+//            return $this->redirect('list');
         }
         elseif (!isset($_POST['id']))
         {
@@ -148,7 +149,7 @@ class Menu extends CommonController
         $temp = false;
         if (!$_POST)
         {
-            return $this->redirect('list');
+//            return $this->redirect('list');
         }
         try {
             foreach ($_POST as $id => $value) 
