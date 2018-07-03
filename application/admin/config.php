@@ -11,11 +11,15 @@ return[
         '__STATIC__'=>'/tp5/public/static',
         '__ADMIN__' => '/tp5/public/admin',
         '__INDEX__' => '/tp5/public',
+        '__UPLOADS__' => '/tp5/public/uploads',
+
 
     ],
 
     'MD5_SALT' => 'TP5_CMS',
     '__ADMIN__' => '/tp5/public/admin',
     '__INDEX__' => '/tp5/public',
+    '__UPLOADS__' => '/tp5/public/uploads',
+   
 
 ];

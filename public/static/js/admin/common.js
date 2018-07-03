@@ -100,3 +100,17 @@ var doDelete =  function (url, postData){
         }
     }, "JSON");
 }
+
+/**
+ * 缩略图上传
+ */
+$('#picUploader').uploader({
+    url: SCOPE.url_pic_upload,
+    // ...
+    responseHandler: function (responseObject, file) {
+        // 当服务器返回的文本内容包含 `'error'` 文本时视为上传失败
+        if (responseObject.response.indexOf('error')) {
+            return '上传失败。服务器返回了一个错误：' + responseObject.response;
+        }
+    }
+});
