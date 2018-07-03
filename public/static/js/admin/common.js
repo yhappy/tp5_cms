@@ -64,33 +64,33 @@ $('select.menu-select').on('change', function () {
 /*
 点击编辑
  */
-$('.btn-edit').click(function(){
+$('.btn-edit').click(function () {
     var url = SCOPE.url_edit + this.id;
-     console.log(url);
+    console.log(url);
     window.location.href = url;
 });
 
 /*
 点击删除
  */
-$('.btn-delete').click(function(){
+$('.btn-delete').click(function () {
     var url = SCOPE.url_delete;
     var id = this.id;
-    var postData ={'id': id};
-    var message = '确定删除ID为'+id+'的数据吗？';
+    var postData = { 'id': id };
+    var message = '确定删除ID为' + id + '的数据吗？';
     // console.log(message);
     layer.open({
         title: 'CONFIRM!',
         content: message,
         icon: 3,
         skin: 'layui-layer-lan',
-        yes: function(){
+        yes: function () {
             doDelete(url, postData);
         }
     });
 });
 
-var doDelete =  function (url, postData){
+var doDelete = function (url, postData) {
     $.post(url, postData, function (result) {
         if (result.status == 1) {
             dialog.success(result.message, '');
@@ -104,13 +104,10 @@ var doDelete =  function (url, postData){
 /**
  * 缩略图上传
  */
-$('#picUploader').uploader({
-    url: SCOPE.url_pic_upload,
-    // ...
-    responseHandler: function (responseObject, file) {
-        // 当服务器返回的文本内容包含 `'error'` 文本时视为上传失败
-        if (responseObject.response.indexOf('error')) {
-            return '上传失败。服务器返回了一个错误：' + responseObject.response;
-        }
-    }
-});
+var options = {
+    // 初始化选项
+    'url': SCOPE.url_pic_upload,
+    'deleteActionOnDone': true,
+};
+
+$('#picUploader').uploader(options);
