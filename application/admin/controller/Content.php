@@ -34,41 +34,60 @@ class Content extends CommonController
     }
 
     /**
-     *  upload
+     *  picupload
      */
     public function picUploader()
     {
         $file = request()->file('file');
         if ($file) {
-            $info = $file->move('uploads');
+            $info = $file->move('uploads/pic');
             if ($info) {
-            // 成功上传后 获取上传信息
+                // 成功上传后 获取上传信息
                 $result = array(
                     // 文件上传成功
-                    'result' => 'ok', 
+                    'result' => 'ok',
                     // 文件在服务器上的唯一标识
-                    'id' => 10001,  
+                    'id' => 10001,
                     // 文件的下载地址
-                    'url' => config('__UPLOADS__') . '/' . $info->getSaveName(),        
+                    'url' => config('__UPLOADS__') . '/pic/' . $info->getSaveName(),
                 );
-                // 输出 jpg
-                // echo $info->getExtension();
-                // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
-                // echo $info->getSaveName();
-                // 输出 42a79759f284b767dfcb2a0197904287.jpg
-                // echo $info->getFilename();
-            } 
-            else {
-                // 上传失败获取错误信息
-                // echo $file->getError();
+            } else {
                 $result = array(
                     // 文件上传失败
-                    'result' => 'failed', 
+                    'result' => 'failed',
                     // 失败信息
-                    'message' => '',
+                    'message' => $file->getError(),
                 );
             }
-            return json_encode($result);
+            exit(json_encode($result));
+        }
+    }
+
+    /**
+     *  picupload
+     */
+    public function kindUploader()
+    {
+        $file = request()->file('imgFile');
+        if ($file) {
+            $info = $file->move('uploads/kind');
+            if ($info) {
+                // 成功上传后 获取上传信息
+                $result = array(
+                    // 文件上传成功
+                    'error' => 0,
+                    // 文件的下载地址
+                    'url' => config('__UPLOADS__') . '/kind/' . $info->getSaveName(),
+                );
+            } else {
+                $result = array(
+                    // 文件上传失败
+                    'error' => 0,
+                    // 失败信息
+                    'message' => '错误' . $file->getError(),
+                );
+            }
+            exit(json_encode($result));
         }
     }
 

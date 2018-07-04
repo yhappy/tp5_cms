@@ -76,7 +76,7 @@ $('.btn-edit').click(function () {
 $('.btn-delete').click(function () {
     var url = SCOPE.url_delete;
     var id = this.id;
-    var postData = { 'id': id };
+    var postData = {'id': id};
     var message = '确定删除ID为' + id + '的数据吗？';
     // console.log(message);
     layer.open({
@@ -106,8 +106,13 @@ var doDelete = function (url, postData) {
  */
 var options = {
     // 初始化选项
-    'url': SCOPE.url_pic_upload,
-    'deleteActionOnDone': true,
+    url: SCOPE.url_pic_upload,
+    onFileUploaded: function (file, responseObject) {
+        resp = responseObject['response'];
+        json = JSON.parse(resp);
+        $('#picUrl').val(json['url']);
+    },
+
 };
 
 $('#picUploader').uploader(options);
