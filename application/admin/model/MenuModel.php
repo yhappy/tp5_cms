@@ -11,7 +11,7 @@ namespace app\admin\model;
 use think\Model;
 
 
-class MenuModel extends model
+class MenuModel extends Model
 {
     protected $table = 'cms_menu';
 
@@ -26,12 +26,10 @@ class MenuModel extends model
 
     public static function updateMenuById(int $id, array $menu_array)
     {
-        if(!$id || !is_numeric($id))
-        {
+        if (!$id || !is_numeric($id)) {
             exception('ID不合法');
         }
-        if(!$menu_array || !is_array($menu_array))
-        {
+        if (!$menu_array || !is_array($menu_array)) {
             exception('数据不合法');
         }
         $menu = new MenuModel();
@@ -45,7 +43,7 @@ class MenuModel extends model
         return self::where($map)->count();
     }
 
-    public static function getMenuPaginate(array $map,int $size, int $count)
+    public static function getMenuPaginate(array $map, int $size, int $count)
     {
         $map['status'] = array('neq', '-1');
         return self::where($map)->order('listorder desc, menu_id desc')->paginate($size, $count);
@@ -53,8 +51,7 @@ class MenuModel extends model
 
     public static function getMenuById(int $id)
     {
-        if (!$id || !is_numeric($id))
-        {
+        if (!$id || !is_numeric($id)) {
             return 0;
         }
         return self::where('menu_id', $id)->find();
@@ -64,6 +61,13 @@ class MenuModel extends model
     {
         $map['status'] = array('neq', '-1');
         $map['menu_type'] = 1;
+        return self::where($map)->order('listorder desc, menu_id desc')->select();
+    }
+
+    public static function getHomeMenu()
+    {
+        $map['status'] = array('neq', '-1');
+        $map['menu_type'] = 0;
         return self::where($map)->order('listorder desc, menu_id desc')->select();
     }
 }

@@ -110,7 +110,7 @@ var options = {
     onFileUploaded: function (file, responseObject) {
         resp = responseObject['response'];
         json = JSON.parse(resp);
-        $('#picUrl').val(json['url']);
+        $('#thumb').val(json['url']);
     },
 
 };

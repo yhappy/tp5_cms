@@ -119,12 +119,9 @@ class Menu extends CommonController
      */
     public function delete()
     {
-        if (!$_POST)
-        {
-           return $this->redirect(config('__ADMIN__'). '/menu');
-        }
-        elseif (!isset($_POST['id']))
-        {
+        if (!$_POST) {
+            return $this->redirect(config('__ADMIN__') . '/menu');
+        } elseif (!isset($_POST['id'])) {
             return show('0', '数据有误');
         }
         //删除操作，实际上是status变-1
@@ -147,13 +144,11 @@ class Menu extends CommonController
     public function listorder()
     {
         $temp = false;
-        if (!$_POST)
-        {
+        if (!$_POST) {
             return $this->redirect(config('__ADMIN__') . '/menu');
         }
         try {
-            foreach ($_POST as $id => $value) 
-            {
+            foreach ($_POST as $id => $value) {
                 $id = intval($id);
                 $result = MenuModel::updateMenuById($id, ['listorder' => $value]);
                 $temp = $temp || $result;
@@ -162,8 +157,8 @@ class Menu extends CommonController
             return show(0, $e->getMessage());
         }
         if ($temp)
-            return show(1 , "更新排序成功");
+            return show(1, "更新排序成功");
         else
-            return show(0 , "更新没有变化");
+            return show(0, "更新没有变化");
     }
 }

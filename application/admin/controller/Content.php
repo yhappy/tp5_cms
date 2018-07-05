@@ -9,6 +9,10 @@
 
 namespace app\admin\controller;
 
+use app\admin\model\NewsModel;
+use app\admin\model\ContentModel;
+use app\admin\model\MenuModel;
+
 
 /**
  * Class Content
@@ -30,6 +34,7 @@ class Content extends CommonController
      */
     public function list()
     {
+
         return $this->fetch('index/content/list');
     }
 
@@ -59,6 +64,7 @@ class Content extends CommonController
                     'message' => $file->getError(),
                 );
             }
+            header('Content-type: text/html; charset=UTF-8');
             exit(json_encode($result));
         }
     }
@@ -87,6 +93,7 @@ class Content extends CommonController
                     'message' => '错误' . $file->getError(),
                 );
             }
+            header('Content-type: text/html; charset=UTF-8');
             exit(json_encode($result));
         }
     }
@@ -96,30 +103,43 @@ class Content extends CommonController
      */
     public function add()
     {
-        // if ($_POST) {
-        //     if (!(isset($_POST['menu_name']) && $_POST['menu_name'])) {
-        //         return show('0', '菜单名字不能为空');
-        //     }
-        //     if (!(isset($_POST['model_name']) && $_POST['model_name'])) {
-        //         return show('0', '模块名字不能为空');
-        //     }
-        //     if (!(isset($_POST['controller_name']) && $_POST['controller_name'])) {
-        //         return show('0', '控制器名字不能为空');
-        //     }
-        //     if (!(isset($_POST['func_name']) && $_POST['func_name'])) {
-        //         return show('0', '方法名字不能为空');
-        //     }
-        //     if (isset($_POST['id'])) {
-        //         return $this->update($_POST);
-        //     }
-        //     //添加操作
-        //     $add_result = MenuModel::insertMenu($_POST);
-        //     if ($add_result) {
-        //         return show('1', '添加成功');
-        //     }
-        //     return show('0', '添加失败');
-
-        // }
+        if ($_POST) {
+            if (!(isset($_POST['title']) && $_POST['title'])) {
+                return show('0', '文章标题不能为空');
+            }
+            if (!(isset($_POST['short_title']) && $_POST['short_title'])) {
+                return show('0', '缩略标题不能为空');
+            }
+            if (!(isset($_POST['column']) && $_POST['column'])) {
+                return show('0', '栏目不能为空');
+            }
+            if (!(isset($_POST['content']) && $_POST['content'])) {
+                return show('0', '内容不能为空');
+            }
+            if (isset($_POST['id'])) {
+                return $this->update($_POST);
+            }
+            //添加操作
+            $news_id = NewsModel::insertNews($_POST);
+            if ($news_id) {
+                $data = array();
+                $data['news_id'] = $news_id;
+                $data['content'] = $_POST['content'];
+                $content_id = ContentModel::insertContent($data);
+                if ($content_id) {
+                    return show('1', '添加成功');
+                } else {
+                    return show('1', '属性添加成功，内容添加失败');
+                }
+            }
+            return show('0', '添加失败');
+        }
+        $homeMenu = MenuModel::getHomeMenu();
+        $fontColor = config('FONT_COLOR');
+        $copyFrom = config('COPY_FROM');
+        $this->assign('homeMenus', $homeMenu);
+        $this->assign('fontColors', $fontColor);
+        $this->assign('copyFroms', $copyFrom);
         return $this->fetch('index/content/add');
     }
 
@@ -193,7 +213,7 @@ class Content extends CommonController
 //             return $this->redirect('list');
 //         }
 //         try {
-//             foreach ($_POST as $id => $value) 
+//             foreach ($_POST as $id => $value)
 //             {
 //                 $id = intval($id);
 //                 $result = MenuModel::updateMenuById($id, ['listorder' => $value]);

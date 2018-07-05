@@ -45,7 +45,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2">缩略图:</label>
                                 <div class="col-md-6 col-sm-10">
-                                    <input type="text" class="form-control" id="picUrl" name="pic_url">
+                                    <input type="text" class="form-control" id="thumb" name="thumb">
                                     <div id='picUploader' class="uploader">
                                         <div class="uploader-message text-center">
                                             <div class="content"></div>
@@ -67,58 +67,70 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="title_color" class="col-sm-2">标题颜色:</label>
+                                <label for="font_color" class="col-sm-2">标题颜色:</label>
                                 <div class="col-md-6 col-sm-10">
                                     <select data-placeholder="选择颜色" class="chosen-select form-control "
-                                            id="title_color">
-                                        <option value=""></option>
-                                        <option value="cat">小猫</option>
-                                        <option value="fish">金鱼</option>
-                                        <option value="dragon">龙</option>
-                                        <option value="mammoth">猛犸</option>
-                                        <option value="gollum">咕噜</option>
+                                            id="font_color" name="font_color">
+                                        <option value="">=选择颜色=</option>
+                                        {foreach name = "fontColors" item = "fontColor"}
+                                        <option value="{$key}">{$fontColor}</option>
+                                        {/foreach}
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="column" class="col-sm-2">所属栏目:</label>
                                 <div class="col-md-6 col-sm-10">
-                                    <select data-placeholder="选择栏目" class="chosen-select form-control " id="column">
-                                        <option value=""></option>
-                                        <option value="cat">小猫</option>
-                                        <option value="fish">金鱼</option>
-                                        <option value="dragon">龙</option>
-                                        <option value="mammoth">猛犸</option>
-                                        <option value="gollum">咕噜</option>
+                                    <select data-placeholder="选择栏目" class="chosen-select form-control "
+                                            id="column" name="column">
+                                        <option value="">=选择栏目=</option>
+                                        {foreach $homeMenus as $homeMenu}
+                                        <option value="{$homeMenu.menu_id}">{$homeMenu.menu_name}</option>
+                                        {/foreach}
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="source" class="col-sm-2">文章来源:</label>
+                                <label for="copyfrom" class="col-sm-2">文章来源:</label>
                                 <div class="col-md-6 col-sm-10">
-                                    <select data-placeholder="选择来源" class="chosen-select form-control " id="source">
-                                        <option value=""></option>
-                                        <option value="cat">小猫</option>
-                                        <option value="fish">金鱼</option>
-                                        <option value="dragon">龙</option>
-                                        <option value="mammoth">猛犸</option>
-                                        <option value="gollum">咕噜</option>
+                                    <select data-placeholder="选择来源" class="chosen-select form-control "
+                                            id="copyfrom" name="copyfrom">
+                                        <option value="">=选择来源=</option>
+                                        {foreach name = "copyFroms" item = "copyFrom"}
+                                        <option value="{$key}">{$copyFrom}</option>
+                                        {/foreach}
+                                    </select>
                                 </div>
-                                </select>
                             </div>
+                            <div class="form-group">
+                                <label for="description" class="col-sm-2">描述:</label>
+                                <div class="col-md-6 col-sm-10">
+                                    <input type="text" class="form-control" id="description" name="description"
+                                           placeholder="描述">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="keywords" class="col-sm-2">关键词:</label>
+                                <div class="col-md-6 col-sm-10">
+                                    <input type="text" class="form-control" id="keywords" name="keywords"
+                                           placeholder="关键词">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="content" class="col-sm-2">文章内容:</label>
+                                <div class="col-md-6 col-sm-10">
+                                    <textarea id="content" name="content" class="form-control kindeditor"
+                                              style="height:250px;">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="button" class="btn btn-primary" id="btn_submit">提交</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2">文章内容:</label>
-                        <div class="col-md-6 col-sm-10">
-                            <textarea id="content" name="content" class="form-control kindeditor" style="height:550px;">Hello, world!</textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="button" class="btn btn-primary" id="btn_submit">提交</button>
-                        </div>
-                    </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -132,6 +144,7 @@
 <script>
     var SCOPE = {
         'url_pic_upload': '__ADMIN__/content/picUploader',
+        'url_add': '__ADMIN__/content/add',
     };
     KindEditor.create('textarea.kindeditor', {
         basePath: '__STATIC__/js/kindeditor/',

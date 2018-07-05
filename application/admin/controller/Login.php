@@ -5,6 +5,7 @@ namespace app\admin\controller;
 
 use app\admin\model\AdminModel;
 use think\Controller;
+
 /**
  * Class Login
  * @package app\admin\controller
@@ -26,10 +27,9 @@ class Login extends Controller
      */
     public function check()
     {
-        if (!isset($_POST))
-            {
-                return $this->index();
-            }
+        if (!isset($_POST)) {
+            return $this->index();
+        }
         $username = $_POST['username'];
         $password = $_POST['password'];
         if (!trim($username)) {
@@ -55,7 +55,7 @@ class Login extends Controller
      *  login
      */
     public function logout()
-    {   
+    {
         cookie('type', null);
         session('adminUser', null);
         $this->redirect(config('__ADMIN__') . '/login');
