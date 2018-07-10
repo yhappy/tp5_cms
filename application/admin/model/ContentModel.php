@@ -26,4 +26,6 @@ class ContentModel extends Model
         return $content->allowField(true)->save($data);
     }
 
+
+
 }

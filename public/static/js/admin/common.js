@@ -44,7 +44,7 @@ $("#btn_submit").click(function () {
             dialog.error(result.message);
         }
     }, "JSON");
-    // console.log(postData);
+    console.log(postData);
 });
 
 /*
@@ -101,18 +101,3 @@ var doDelete = function (url, postData) {
     }, "JSON");
 }
 
-/**
- * 缩略图上传
- */
-var options = {
-    // 初始化选项
-    url: SCOPE.url_pic_upload,
-    onFileUploaded: function (file, responseObject) {
-        resp = responseObject['response'];
-        json = JSON.parse(resp);
-        $('#thumb').val(json['url']);
-    },
-
-};
-
-$('#picUploader').uploader(options);

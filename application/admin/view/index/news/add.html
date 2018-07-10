@@ -31,20 +31,20 @@
                         <form class="form-horizontal" id="form_add">
                             <div class="form-group">
                                 <label for="title" class="col-sm-2">文章标题:</label>
-                                <div class="col-md-6 col-sm-10">
+                                <div class="col-md-9 col-sm-10">
                                     <input type="text" class="form-control" id="title" name="title" placeholder="文章的名字">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="short_title" class="col-sm-2">缩略标题:</label>
-                                <div class="col-md-6 col-sm-10">
+                                <div class="col-md-9 col-sm-10">
                                     <input type="text" class="form-control" id="short_title" name="short_title"
                                            placeholder="缩略标题">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2">缩略图:</label>
-                                <div class="col-md-6 col-sm-10">
+                                <div class="col-md-9 col-sm-10">
                                     <input type="text" class="form-control" id="thumb" name="thumb">
                                     <div id='picUploader' class="uploader">
                                         <div class="uploader-message text-center">
@@ -68,7 +68,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="font_color" class="col-sm-2">标题颜色:</label>
-                                <div class="col-md-6 col-sm-10">
+                                <div class="col-md-9 col-sm-10">
                                     <select data-placeholder="选择颜色" class="chosen-select form-control "
                                             id="font_color" name="font_color">
                                         <option value="">=选择颜色=</option>
@@ -80,7 +80,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="column" class="col-sm-2">所属栏目:</label>
-                                <div class="col-md-6 col-sm-10">
+                                <div class="col-md-9 col-sm-10">
                                     <select data-placeholder="选择栏目" class="chosen-select form-control "
                                             id="column" name="column">
                                         <option value="">=选择栏目=</option>
@@ -92,7 +92,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="copyfrom" class="col-sm-2">文章来源:</label>
-                                <div class="col-md-6 col-sm-10">
+                                <div class="col-md-9 col-sm-10">
                                     <select data-placeholder="选择来源" class="chosen-select form-control "
                                             id="copyfrom" name="copyfrom">
                                         <option value="">=选择来源=</option>
@@ -104,24 +104,23 @@
                             </div>
                             <div class="form-group">
                                 <label for="description" class="col-sm-2">描述:</label>
-                                <div class="col-md-6 col-sm-10">
+                                <div class="col-md-9 col-sm-10">
                                     <input type="text" class="form-control" id="description" name="description"
                                            placeholder="描述">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="keywords" class="col-sm-2">关键词:</label>
-                                <div class="col-md-6 col-sm-10">
+                                <div class="col-md-9 col-sm-10">
                                     <input type="text" class="form-control" id="keywords" name="keywords"
                                            placeholder="关键词">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="content" class="col-sm-2">文章内容:</label>
-                                <div class="col-md-6 col-sm-10">
-                                    <textarea id="content" name="content" class="form-control kindeditor"
-                                              style="height:250px;">
-                                    </textarea>
+                                <div class="col-md-9 col-sm-10">
+                                    <textarea id="content" name="content"
+                                              style="width:100%;height:200px;"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -143,15 +142,21 @@
 
 <script>
     var SCOPE = {
-        'url_pic_upload': '__ADMIN__/content/picUploader',
-        'url_add': '__ADMIN__/content/add',
+        'url_pic_upload': '__ADMIN__/news/picUploader',
+        'url_add': '__ADMIN__/news/add',
     };
-    KindEditor.create('textarea.kindeditor', {
+    var options = {
         basePath: '__STATIC__/js/kindeditor/',
-        uploadJson: '__ADMIN__/content/kindUploader',
+        uploadJson: '__ADMIN__/news/kindUploader',
         allowFileManager: false,
-        bodyClass: 'article-content'
-    });
+        bodyClass: 'article-content',
+        afterBlur: function () {
+            $('textarea').html(editor.html());
+            console.log($('textarea').html());
+        },
+    };
+    var editor = KindEditor.create('#content', options);
+
 </script>
 {include file="index/footer" /}
 

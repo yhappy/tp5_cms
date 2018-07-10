@@ -94,6 +94,20 @@
     var SCOPE = {
         "url_add": "__ADMIN__/menu/add",
     };
+    /**
+     * 缩略图上传
+     */
+
+    $('#picUploader').uploader({
+        // 初始化选项
+        url: SCOPE.url_pic_upload,
+        onFileUploaded: function (file, responseObject) {
+            resp = responseObject['response'];
+            json = JSON.parse(resp);
+            $('#thumb').val(json['url']);
+        },
+    });
+
 </script>
 
 </body>

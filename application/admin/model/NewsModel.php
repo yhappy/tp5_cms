@@ -28,4 +28,18 @@ class NewsModel extends Model
         return 0;
     }
 
+
+    public static function getNewsCount(array $map)
+    {
+        $map['status'] = array('neq', '-1');
+        return self::where($map)->count();
+    }
+
+    public static function getNewsPaginate(array $map, int $size, int $count)
+    {
+        $map['status'] = array('neq', '-1');
+        $content = new NewsModel();
+        return $content->where($map)->order('listorder desc, news_id desc')->paginate($size, $count);
+    }
+
 }

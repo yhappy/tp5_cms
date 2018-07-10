@@ -10,15 +10,15 @@
 namespace app\admin\controller;
 
 use app\admin\model\NewsModel;
-use app\admin\model\ContentModel;
 use app\admin\model\MenuModel;
+use app\admin\model\ContentModel;
 
 
 /**
- * Class Content
+ * Class News
  * @package app\admin\controller
  */
-class Content extends CommonController
+class News extends CommonController
 {
 
     /**
@@ -34,8 +34,27 @@ class Content extends CommonController
      */
     public function list()
     {
+        $map = [];
+        $column_type = -1;
+        $columns_id = MenuModel::getHomeMenuId();
+        $columns_id[] = $column_type;
+        $columns = MenuModel::getHomeMenu();
+        if (isset($_GET['type']) && in_array($_GET['type'], $columns_id)) {
+            $column_type = intval($_GET['type']);
+            cookie('column_type', $column_type);
+        } elseif (isset($_COOKIE['column_type']) && in_array($_COOKIE['column_type'], $columns_id)) {
+            $column_type = intval($_COOKIE['column_type']);
+        }
+        if ($column_type >= 0) {
+            $map['column'] = $column_type;
+        }
+        $news_count = NewsModel::getNewsCount($map);
+        $paginate = NewsModel::getNewsPaginate($map, 4, $news_count);
+        $this->assign('columns', $columns);
+        $this->assign('list', $paginate);
+        $this->assign('type', $column_type);
 
-        return $this->fetch('index/content/list');
+        return $this->fetch('index/news/list');
     }
 
     /**
@@ -140,7 +159,7 @@ class Content extends CommonController
         $this->assign('homeMenus', $homeMenu);
         $this->assign('fontColors', $fontColor);
         $this->assign('copyFroms', $copyFrom);
-        return $this->fetch('index/content/add');
+        return $this->fetch('index/news/add');
     }
 
 

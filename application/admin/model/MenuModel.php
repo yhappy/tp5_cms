@@ -21,7 +21,8 @@ class MenuModel extends Model
             return 0;
         }
         $menu_array['create_time'] = time();
-        return self::save($menu_array);
+        $menu = new MenuModel();
+        return $menu->save($menu_array);
     }
 
     public static function updateMenuById(int $id, array $menu_array)
@@ -37,7 +38,7 @@ class MenuModel extends Model
     }
 
 
-    public static function getMenusCount(array $map)
+    public static function getMenuCount(array $map)
     {
         $map['status'] = array('neq', '-1');
         return self::where($map)->count();
@@ -69,5 +70,12 @@ class MenuModel extends Model
         $map['status'] = array('neq', '-1');
         $map['menu_type'] = 0;
         return self::where($map)->order('listorder desc, menu_id desc')->select();
+    }
+
+    public static function getHomeMenuId()
+    {
+        $map['status'] = array('neq', '-1');
+        $map['menu_type'] = 0;
+        return self::where($map)->order('listorder desc, menu_id desc')->column('menu_id');
     }
 }

@@ -42,7 +42,7 @@ class Menu extends CommonController
         if ($menu_type >= 0) {
             $map['menu_type'] = $menu_type;
         }
-        $menus_count = MenuModel::getMenusCount($map);
+        $menus_count = MenuModel::getMenuCount($map);
         $paginate = MenuModel::getMenuPaginate($map, 4, $menus_count);
         $this->assign('list', $paginate);
         $this->assign('type', $menu_type);
