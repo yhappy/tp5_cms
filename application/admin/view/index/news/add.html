@@ -84,8 +84,8 @@
                                     <select data-placeholder="选择栏目" class="chosen-select form-control "
                                             id="column" name="column">
                                         <option value="">=选择栏目=</option>
-                                        {foreach $homeMenus as $homeMenu}
-                                        <option value="{$homeMenu.menu_id}">{$homeMenu.menu_name}</option>
+                                        {foreach $homeMenus as $key=>$value}
+                                        <option value="{$key}">{$value}</option>
                                         {/foreach}
                                     </select>
                                 </div>
@@ -145,6 +145,17 @@
         'url_pic_upload': '__ADMIN__/news/picUploader',
         'url_add': '__ADMIN__/news/add',
     };
+
+    var options = {
+        'url' : SCOPE.url_pic_upload,
+        onFileUploaded: function (file, responseObject) {
+            resp = responseObject['response'];
+            json = JSON.parse(resp);
+            $('#thumb').val(json['url']);
+        }
+    };
+    $('#picUploader').uploader(options);
+
     var options = {
         basePath: '__STATIC__/js/kindeditor/',
         uploadJson: '__ADMIN__/news/kindUploader',

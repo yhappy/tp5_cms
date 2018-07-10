@@ -69,7 +69,7 @@ class MenuModel extends Model
     {
         $map['status'] = array('neq', '-1');
         $map['menu_type'] = 0;
-        return self::where($map)->order('listorder desc, menu_id desc')->select();
+        return self::where($map)->order('listorder desc, menu_id desc')->column('menu_name', 'menu_id');
     }
 
     public static function getHomeMenuId()

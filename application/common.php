@@ -20,21 +20,45 @@ function getMD5WithSalt(string $input)
 
 function getStatus($status)
 {
-    switch ($status)
-    {
-        case 1: return "开启";
-        case 0: return "关闭";
-        case -1: return "已删除";
-        default: return "不明";
+    switch ($status) {
+        case 1:
+            return "启用";
+        case 0:
+            return "关闭";
+        case -1:
+            return "已删除";
+        default:
+            return "不明";
     }
 }
 
 function getActive($controller_name)
 {
     $current_controller = strtolower(request()->controller());
-    if($controller_name == $current_controller)
-    {
+    if ($controller_name == $current_controller) {
         return true;
     }
     return false;
+}
+
+function getColorById($id)
+{
+    $fontColor = config('FONT_COLOR');
+    return $fontColor[$id];
+
+}
+
+/**
+ * @param $id
+ * @return mixed
+ */
+function getCopyFromById($id)
+{
+    try {
+        $copyFrom = config('COPY_FROM');
+        return $copyFrom[$id];
+    } catch (Exception $e) {
+        return;
+    }
+
 }
