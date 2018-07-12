@@ -30,26 +30,28 @@
                     <div class="panel-body">
                         <form class="form-horizontal" id="form_add">
                             <div class="form-group">
+                                <input type="hidden" name="id" value="{$news->news_id}">
                                 <label for="title" class="col-sm-2">文章标题:</label>
                                 <div class="col-md-9 col-sm-10">
-                                    <input type="text" class="form-control" id="title" name="title" placeholder="文章的名字">
+                                    <input type="text" class="form-control" id="title" name="title"
+                                           value="{$news->title}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="short_title" class="col-sm-2">缩略标题:</label>
                                 <div class="col-md-9 col-sm-10">
                                     <input type="text" class="form-control" id="short_title" name="short_title"
-                                           placeholder="缩略标题">
+                                           value="{$news->short_title}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2">缩略图:</label>
                                 <div class="col-md-9 col-sm-10">
-                                    <input type="hidden" class="form-control" id="thumb" name="thumb">
+                                    <input type="hidden" class="form-control" id="thumb" name="thumb" value="{$news->thumb}">
                                     <div class="panel">
                                         <div class="panel-body">
                                             <img style="max-width: 150px; max-height: 150px" id="thumb-img"
-                                                 src="">
+                                                 src="{$news->thumb}">
                                         </div>
                                     </div>
                                     <div id='picUploader' class="uploader">
@@ -79,7 +81,8 @@
                                             id="font_color" name="font_color">
                                         <option value="">=选择颜色=</option>
                                         {foreach name = "fontColors" item = "fontColor"}
-                                        <option value="{$key}">{$fontColor}</option>
+                                        <option value="{$key}" {$key==$news->font_color?"selected":""}>{$fontColor}
+                                        </option>
                                         {/foreach}
                                     </select>
                                 </div>
@@ -91,7 +94,7 @@
                                             id="column" name="column">
                                         <option value="">=选择栏目=</option>
                                         {foreach $homeMenus as $key=>$value}
-                                        <option value="{$key}">{$value}</option>
+                                        <option value="{$key}" {$key==$news->column?"selected":""}>{$value}</option>
                                         {/foreach}
                                     </select>
                                 </div>
@@ -103,7 +106,8 @@
                                             id="copyfrom" name="copyfrom">
                                         <option value="">=选择来源=</option>
                                         {foreach name = "copyFroms" item = "copyFrom"}
-                                        <option value="{$key}">{$copyFrom}</option>
+                                        <option value="{$key}" {$key==$news->copyfrom?"selected":""}>{$copyFrom}
+                                        </option>
                                         {/foreach}
                                     </select>
                                 </div>
@@ -112,21 +116,21 @@
                                 <label for="description" class="col-sm-2">描述:</label>
                                 <div class="col-md-9 col-sm-10">
                                     <input type="text" class="form-control" id="description" name="description"
-                                           placeholder="描述">
+                                           value="{$news->description}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="keywords" class="col-sm-2">关键词:</label>
                                 <div class="col-md-9 col-sm-10">
                                     <input type="text" class="form-control" id="keywords" name="keywords"
-                                           placeholder="关键词">
+                                           value="{$news->keywords}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="content" class="col-sm-2">文章内容:</label>
                                 <div class="col-md-9 col-sm-10">
                                     <textarea id="content" name="content"
-                                              style="width:100%;height:200px;"></textarea>
+                                              style="width:100%;height:200px;">{$content?$content->content:''}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -171,7 +175,7 @@
         bodyClass: 'article-content',
         afterBlur: function () {
             $('textarea').html(editor.html());
-            console.log($('textarea').html());
+            // console.log($('textarea').html());
         },
     };
     var editor = KindEditor.create('#content', options);

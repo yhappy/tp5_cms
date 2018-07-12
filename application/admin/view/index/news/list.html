@@ -74,7 +74,7 @@
                                     <td>{$news->title}</td>
                                     <td>{$columns[$news->column]}</td>
                                     <td>{$news->copyfrom|getCopyFromById}</td>
-                                    <td><img src="{$news->thumb}"/></td>
+                                    <td><img style="max-height: 120px;max-width: 125px" src="{$news->thumb}"/></td>
                                     <td>{$news->create_time}</td>
                                     <td>{$news->status|getStatus}</td>
                                     <td>
