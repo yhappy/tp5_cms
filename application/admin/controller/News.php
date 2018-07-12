@@ -163,36 +163,48 @@ class News extends CommonController
     }
 
 
-//     /**
-//      *   edit
-//      */
-//     public function edit()
-//     {
-//         if ($_GET && isset($_GET['id'])) {
-//             $id = $_GET['id'];
-//             $one_menu = MenuModel::getMenuById($id);
-//             $this->assign('menu', $one_menu);
-//             return $this->fetch('index/menu/edit');
-//         }
-//         return $this->redirect('list');
-//     }
+    /**
+     *   edit
+     */
+    public function edit()
+    {
+        if ($_GET && isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $one_news = NewsModel::getNewsById($id);
+            $this->assign('news', $one_news);
 
-//     /**
-//      *   update
-//      */
-//     public function update(array $post)
-//     {
-//         //更新操作
-//         try {
-//             $updt_result = MenuModel::updateMenuById($post['id'], $post);
-//             if ($updt_result) {
-//                 return show('1', '更新成功');
-//             }
-//             return show('0', '没有更改');
-//         } catch (Exception $e) {
-//             return show('0', $e->getMessage());
-//         }
-//     }
+            $homeMenu = MenuModel::getHomeMenu();
+            $fontColor = config('FONT_COLOR');
+            $copyFrom = config('COPY_FROM');
+            $this->assign('homeMenus', $homeMenu);
+            $this->assign('fontColors', $fontColor);
+            $this->assign('copyFroms', $copyFrom);
+
+            $news_id = $one_news->news_id;
+            $content = ContentModel::getContentByNewsId($news_id);
+            $this->assign('content', $content);
+            return $this->fetch('index/news/edit');
+        }
+        return $this->redirect('list');
+    }
+
+    /**
+     *   update
+     */
+    public function update(array $post)
+    {
+        //更新操作
+        try {
+            $updt_news = NewsModel::updateNewsById($post['id'], $post);
+            $updt_content = ContentModel::updateContentByNewsId($post['id'], $post['content']);
+            if ($updt_news or $updt_content) {
+                return show('1', '更新成功');
+            }
+            return show('0', '没有更改');
+        } catch (Exception $e) {
+            return show('0', $e->getMessage());
+        }
+    }
 
 //     /**
 //      *   delete
@@ -221,29 +233,26 @@ class News extends CommonController
 //         }
 //     }
 
-//     /*
-//     update listorder
-//      */
-//     public function listorder()
-//     {
-//         $temp = false;
-//         if (!$_POST)
-//         {
-//             return $this->redirect('list');
-//         }
-//         try {
-//             foreach ($_POST as $id => $value)
-//             {
-//                 $id = intval($id);
-//                 $result = MenuModel::updateMenuById($id, ['listorder' => $value]);
-//                 $temp = $temp || $result;
-//             }
-//         } catch (Exception $e) {
-//             return show(0, $e->getMessage());
-//         }
-//         if ($temp)
-//             return show(1 , "更新排序成功");
-//         else
-//             return show(0 , "更新没有变化");
-//     }
+    /*
+    update listorder
+     */
+    public function listorder()
+    {
+        if (!$_POST) {
+            return $this->redirect('list');
+        }
+        try {
+            $id = intval($_POST['id']);
+            $listorder = intval($_POST['listorder']);
+            $result = NewsModel::updateNewsById($id, ['listorder' => $listorder]);
+            if ($result)
+                return show(1, "更新排序成功");
+            else
+                return show(0, "更新没有变化");
+        } catch (Exception $e) {
+            return show(0, $e->getMessage());
+        }
+
+    }
+
 }

@@ -13,6 +13,7 @@ use think\Model;
 class AdminModel extends model
 {
     protected $table = 'cms_admin';
+
     public function getAdminByUsername(string $username)
     {
         return  $this->where('username', $username)->find();

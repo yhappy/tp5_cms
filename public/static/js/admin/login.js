@@ -16,7 +16,7 @@ var login = {
             layer.alert('password not exit');
             return
         }
-
+        console.log('check');
         var url = "/tp5/public/admin/Login/check";
         var data = {'username': username, 'password': password};
         $.post(url, data, function (result) {

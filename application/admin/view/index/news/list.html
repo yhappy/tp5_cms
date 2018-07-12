@@ -66,7 +66,10 @@
                                 <tbody>
                                 {foreach $list as $news}
                                 <tr>
-                                    <td>{$news->listorder}</td>
+                                    <td>
+                                        <input type="text" name="{$news->news_id}" class="form-control list-order"
+                                               value="{$news->listorder}">
+                                    </td>
                                     <td>{$news->news_id}</td>
                                     <td>{$news->title}</td>
                                     <td>{$columns[$news->column]}</td>
@@ -76,11 +79,11 @@
                                     <td>{$news->status|getStatus}</td>
                                     <td>
                                         <div>
-                                            <button type="button" id="" class="btn btn-xs btn-primary btn-edit">编辑
+                                            <button type="button" name="{$news->news_id}" class="btn btn-xs btn-primary btn-edit">编辑
                                             </button>
                                         </div>
                                         <div>
-                                            <button type="button" id="" class="btn btn-xs btn-danger btn-delete">删除
+                                            <button type="button" name="{$news->news_id}" class="btn btn-xs btn-danger btn-delete">删除
                                             </button>
                                         </div>
                                     </td>
@@ -106,6 +109,8 @@
     var SCOPE = {
         "url_add": "__ADMIN__/news/add",
         "url_list_type": "__ADMIN__/news/list?type=",
+        "url_listorder": "__ADMIN__/news/listorder",
+        "url_edit": "__ADMIN__/news/edit?id="
 
     };
 </script>

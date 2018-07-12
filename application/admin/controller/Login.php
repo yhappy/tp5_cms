@@ -30,6 +30,10 @@ class Login extends Controller
         if (!isset($_POST)) {
             return $this->index();
         }
+        if (!isset($_POST['username']) or !isset($_POST['password'])) {
+            return $this->index();
+        }
+
         $username = $_POST['username'];
         $password = $_POST['password'];
         if (!trim($username)) {

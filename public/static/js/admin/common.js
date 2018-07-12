@@ -65,8 +65,8 @@ $('select.menu-select').on('change', function () {
 点击编辑
  */
 $('.btn-edit').click(function () {
-    var url = SCOPE.url_edit + this.id;
-    console.log(url);
+    var url = SCOPE.url_edit + this.name;
+    // console.log(url);
     window.location.href = url;
 });
 
@@ -101,4 +101,17 @@ var doDelete = function (url, postData) {
     }, "JSON");
 }
 
-
+$(".list-order").change(function () {
+    var data = {};
+    data['listorder'] = this.value;
+    data['id'] = this.name;
+    url = SCOPE.url_listorder;
+    $.post(url, data, function (result) {
+        if (result.status == 0) {
+            dialog.error(result.message);
+        }
+        if (result.status == 1) {
+            dialog.success(result.message, '');
+        }
+    },"JSON");
+});

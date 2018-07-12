@@ -42,4 +42,24 @@ class NewsModel extends Model
         return $content->where($map)->order('listorder desc, news_id desc')->paginate($size, $count);
     }
 
+    public static function updateNewsById(int $id, array $data)
+    {
+        if (!$id || !is_numeric($id)) {
+            exception('ID不合法');
+        }
+        if (!$data || !is_array($data)) {
+            exception('数据不合法');
+        }
+        $news = new NewsModel();
+        return $news->allowField(true)->save($data, ['news_id' => $id]);
+    }
+
+    public static function getNewsById(int $id)
+    {
+        if (!$id || !is_numeric($id)) {
+            return 0;
+        }
+        return self::where('news_id', $id)->find();
+    }
+
 }

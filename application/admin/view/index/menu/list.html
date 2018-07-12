@@ -74,8 +74,8 @@
                                             <td>{$menu->status|getStatus}</td>
                                             <td>{$menu->create_time}</td>
                                             <td>
-                                                <button type="button" id="{$menu->menu_id}" class="btn btn-xs btn-primary btn-edit">编辑</button>
-                                                <button type="button" id="{$menu->menu_id}" class="btn btn-xs btn-danger btn-delete">删除</button>
+                                                <button type="button" name="{$menu->menu_id}" class="btn btn-xs btn-primary btn-edit">编辑</button>
+                                                <button type="button" name="{$menu->menu_id}" class="btn btn-xs btn-danger btn-delete">删除</button>
                                             </td>
                                         </tr>
                                         {/foreach}
