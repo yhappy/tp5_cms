@@ -75,7 +75,7 @@ $('.btn-edit').click(function () {
  */
 $('.btn-delete').click(function () {
     var url = SCOPE.url_delete;
-    var id = this.id;
+    var id = this.name;
     var postData = {'id': id};
     var message = '确定删除ID为' + id + '的数据吗？';
     // console.log(message);

@@ -62,3 +62,8 @@ function getCopyFromById($id)
     }
 
 }
+
+function getLoginuser()
+{
+    return session('adminUser');
+}

@@ -11,7 +11,6 @@ namespace app\admin\controller;
 use think\Controller;
 use think\Request;
 
-
 class CommonController extends Controller
 {
     public function __construct(request $request = null)
@@ -22,23 +21,15 @@ class CommonController extends Controller
 
     private function __init()
     {
-        if (!$this->isLogin())
-        {
-            $this->redirect(config('__ADMIN__').'/login');
+        if (!$this->isLogin()) {
+            $this->redirect(config('__ADMIN__') . '/login');
         }
     }
 
-    public function getLoginuser()
-    {
-        return session('adminUser');
-    }
-
-
     public function isLogin()
     {
-        $user = $this->getLoginuser();
-        if ($user)
-        {
+        $user = getLoginuser();
+        if ($user) {
             return true;
         }
         return false;

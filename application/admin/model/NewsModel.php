@@ -21,6 +21,7 @@ class NewsModel extends Model
             return 0;
         }
         $data['create_time'] = time();
+        $data['username'] = getLoginuser()?getLoginuser():'未知';
         $news = new NewsModel();
         if ($news->allowField(true)->save($data)) {
             return $news->news_id;
@@ -50,6 +51,7 @@ class NewsModel extends Model
         if (!$data || !is_array($data)) {
             exception('数据不合法');
         }
+        $data['update_time'] = time();
         $news = new NewsModel();
         return $news->allowField(true)->save($data, ['news_id' => $id]);
     }
