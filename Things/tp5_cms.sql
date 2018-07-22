@@ -71,6 +71,20 @@ create table `cms_news_content`(
   default charset=utf8;
 
 /*
+轮播推荐表
+ */
+create table `cms_slide` (
+  `id` smallint(5) unsigned not null auto_increment,
+  `news_id` mediumint(8) unsigned not null ,
+  `status` tinyint(1) not null default '1',
+  `create_time` int(10) unsigned not null default '0',
+  primary key (`id`)
+)
+  engine=MyISAM
+  auto_increment = 1
+  default charset=utf8;
+
+  /*
 推荐位主表
  */
 create table `cms_position` (

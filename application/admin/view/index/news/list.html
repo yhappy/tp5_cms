@@ -38,27 +38,24 @@
                                 </select>
                             </div>
                             <div class="tools-group">
-                                <a href="#" class="btn btn-success" id="btn-listorder">
-                                    <i class="icon icon-check-circle"></i> 排序</a>
+                                <a href="#" class="btn btn-warning" id="btn-slide">
+                                    <i class="icon icon-heart-empty"></i> 推荐</a>
                                 <a href="#" class="btn btn-primary" id="btn-add">
                                     <i class="icon icon-plus-sign"></i> 新增</a>
-                                <a href="#" class="btn btn-warning">
-                                    <i class="icon icon-ban-circle"></i> 禁用</a>
-                                <a href="#" class="btn btn-danger">
-                                    <i class="icon icon-remove-sign"></i> 删除</a>
                             </div>
                         </div>
-                        <form id="form_listorder">
+                        <form id="form_slide">
                             <table class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
+                                    <th class="col-md-1 col-sm-1 col-xs-1">选择</th>
                                     <th class="col-md-1 col-sm-1 col-xs-1">排序</th>
                                     <th class="col-md-1 col-sm-1 col-xs-1">ID</th>
                                     <th class="col-md-2 col-sm-2 col-xs-2">标题</th>
                                     <th class="col-md-1 col-sm-1 col-xs-1">栏目</th>
                                     <th class="col-md-1 col-sm-1 col-xs-1">来源</th>
                                     <th class="col-md-2 col-sm-2 col-xs-2">缩略图</th>
-                                    <th class="col-md-2 col-sm-2 col-xs-2">创建时间</th>
+                                    <th class="col-md-1 col-sm-1 col-xs-1">创建时间</th>
                                     <th class="col-md-1 col-sm-1 col-xs-1">状态</th>
                                     <th class="col-md-1 col-sm-1 col-xs-1">操作</th>
                                 </tr>
@@ -66,6 +63,9 @@
                                 <tbody>
                                 {foreach $list as $news}
                                 <tr>
+                                    <td>
+                                        <input type="checkbox" class="checkbox" name="slide" value="{$news->news_id}">
+                                    </td>
                                     <td>
                                         <input type="text" name="{$news->news_id}" class="form-control list-order"
                                                value="{$news->listorder}">
@@ -79,12 +79,14 @@
                                     <td>{$news->status|getStatus}</td>
                                     <td>
                                         <div>
-                                            <button type="button" name="{$news->news_id}" class="btn btn-xs btn-primary btn-edit">编辑
+                                            <button type="button" name="{$news->news_id}"
+                                                    class="btn btn-xs btn-primary btn-edit">编辑
                                             </button>
                                         </div>
                                         <br>
                                         <div>
-                                            <button type="button" name="{$news->news_id}" class="btn btn-xs btn-danger btn-delete">删除
+                                            <button type="button" name="{$news->news_id}"
+                                                    class="btn btn-xs btn-danger btn-delete">删除
                                             </button>
                                         </div>
                                     </td>
@@ -93,6 +95,7 @@
                                 </tbody>
                             </table>
                         </form>
+
                         <div>
                             {$list->render()}
                         </div>
@@ -112,8 +115,8 @@
         "url_list_type": "__ADMIN__/news/list?type=",
         "url_listorder": "__ADMIN__/news/listorder",
         "url_edit": "__ADMIN__/news/edit?id=",
-        "url_delete": "__ADMIN__/news/delete"
-
+        "url_delete": "__ADMIN__/news/delete",
+        "url_slide": "__ADMIN__/slide/insert",
     };
 </script>
 

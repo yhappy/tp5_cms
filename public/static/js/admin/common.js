@@ -11,6 +11,25 @@ $("#btn-add").click(function () {
 提交排序
  */
 
+$("#btn-slide").click(function () {
+    var datas = $("#form_slide").serializeArray();
+    var url = SCOPE.url_slide;
+    var slideArray = {"slide":new Array()};
+    for (i in datas){
+        if (datas[i].name == "slide"){
+            slideArray.slide.push(datas[i].value);
+        }
+    }
+    $.post(url, slideArray, function (result) {
+
+    }, "JSON");
+    // console.log(datas);
+    console.log(slideArray);
+});
+    /*
+提交排序
+ */
+
 $("#btn-listorder").click(function () {
     var data = $("#form_listorder").serializeArray();
     var url = SCOPE.url_listorder;

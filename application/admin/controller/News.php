@@ -252,4 +252,5 @@ class News extends CommonController
 
     }
 
+
 }
