@@ -14,21 +14,42 @@ $("#btn-add").click(function () {
 $("#btn-slide").click(function () {
     var datas = $("#form_slide").serializeArray();
     var url = SCOPE.url_slide;
-    var slideArray = {"slide":new Array()};
-    for (i in datas){
-        if (datas[i].name == "slide"){
+    var slideArray = {"slide": new Array()};
+    for (i in datas) {
+        if (datas[i].name == "slide") {
             slideArray.slide.push(datas[i].value);
         }
     }
     $.post(url, slideArray, function (result) {
-
+        console.log(result);
+        if (result.status == '0') {
+            new $.zui.Messager('提示消息：' + result.message, {
+                type: 'danger' // 定义颜色主题
+            }).show();
+        } else {
+            if (result.data.success) {
+                new $.zui.Messager('提示消息：ID为' + result.data.success + '的新闻收藏成功', {
+                    type: 'success' // 定义颜色主题
+                }).show();
+            }
+            if (result.data.error) {
+                new $.zui.Messager('提示消息：ID为' + result.data.error + '的新闻收藏失败', {
+                    type: 'danger' // 定义颜色主题
+                }).show();
+            }
+            if (result.data.exist) {
+                new $.zui.Messager('提示消息：ID为' + result.data.exist + '的新闻之前收藏过了', {
+                    type: 'danger' // 定义颜色主题
+                }).show();
+            }
+        }
     }, "JSON");
     // console.log(datas);
-    console.log(slideArray);
+    // console.log(slideArray);
 });
-    /*
+/*
 提交排序
- */
+*/
 
 $("#btn-listorder").click(function () {
     var data = $("#form_listorder").serializeArray();
@@ -132,5 +153,5 @@ $(".list-order").change(function () {
         if (result.status == 1) {
             dialog.success(result.message, '');
         }
-    },"JSON");
+    }, "JSON");
 });

@@ -8,23 +8,27 @@
 
 namespace app\admin\model;
 
-
 use think\Model;
 
 class SlideModel extends Model
 {
     protected $table = 'cms_slide';
 
-    public static function insertNews(array $data)
+    public static function insertSlide(int $news_id)
     {
-        if (!$data || !is_array($data)) {
+        if (!$news_id || !is_numeric($news_id)) {
             return 0;
         }
+        $slide = new SlideModel();
+        $data['news_id'] = $news_id;
         $data['create_time'] = time();
-        $news = new NewsModel();
-        if ($news->allowField(true)->save($data)) {
-            return $news->news_id;
+        return $slide->save($data);
+    }
+    public static function getSlideByNewsId(int $news_id)
+    {
+        if (!$news_id || !is_numeric($news_id)) {
+            return 0;
         }
-        return 0;
+        return self::where('news_id', $news_id)->find();
     }
 }
