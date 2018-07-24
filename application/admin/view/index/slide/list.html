@@ -42,27 +42,36 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                {volist name='slides' id='slide'}
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><img style="max-height: 120px;max-width: 125px" src=" "/></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>
+                                        <input type="text" value="{$slide.listorder}" class="form-control list-order" name="{$slide.id}">
+                                    </td>
+                                    <td>{$slide.id}</td>
+                                    <td>{$slide.title}</td>
+                                    <td>{$slide.column|getHomeMenuNameById}</td>
+                                    <td>{$slide.copyfrom}</td>
+                                    <td><img style="max-height: 120px;max-width: 125px" src="{$slide.thumb}"/></td>
+                                    <td>
+                                        {$slide.create_time}
+                                    </td>
+                                    <td>
+                                        {$slide.status|getStatus}
+                                    </td>
                                     <td>
                                         <div>
-                                            <button type="button" name=""
+                                            <button type="button" name="{$slide.id}"
                                                     class="btn btn-xs btn-danger btn-delete">删除
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
+                                {/volist}
                                 </tbody>
                             </table>
                         </form>
                         <div>
+                            {$slides->render()}
                         </div>
                     </div>
                 </div>

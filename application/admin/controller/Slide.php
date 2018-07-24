@@ -32,6 +32,18 @@ class Slide extends CommonController
      */
     public function list()
     {
+        $map = [];
+        $count = SlideModel::getSlideCount();
+        $size = 5;
+        $paginate = SlideModel::getSlidePaginate($map, $size, $count)->each(function ($item, $key) {
+            $news = NewsModel::getNewsById($item->news_id);
+            $item['title'] = $news->title;
+            $item['column'] = $news->column;
+            $item['copyfrom'] = $news->copyfrom;
+            $item['thumb'] = $news->thumb;
+            return $item;
+        });
+        $this->assign('slides', $paginate);
         return $this->fetch('index/slide/list');
     }
 
@@ -65,5 +77,51 @@ class Slide extends CommonController
         $data['exist'] = $exist;
         return show('1', '', $data);
     }
+
+    /*
+   update listorder
+    */
+    public function listorder()
+    {
+        if (!$_POST) {
+            return $this->redirect('list');
+        }
+        try {
+            $id = intval($_POST['id']);
+            $listorder = intval($_POST['listorder']);
+            $result = SlideModel::updateSlideById($id, ['listorder' => $listorder]);
+            if ($result)
+                return show(1, "更新排序成功");
+            else
+                return show(0, "更新没有变化");
+        } catch (Exception $e) {
+            return show(0, $e->getMessage());
+        }
+    }
+
+    /**
+     *   delete
+     */
+    public function delete()
+    {
+        if (!$_POST) {
+            return $this->redirect('list');
+        } elseif (!isset($_POST['id'])) {
+            return show('0', '数据有误');
+        }
+        //删除操作，实际上是status变-1
+        $id = $_POST['id'];
+        $del_array = array('status' => '-1');
+        try {
+            $del_result = SlideModel::updateSlideById($id, $del_array);
+            if ($del_result) {
+                return show('1', '删除成功');
+            }
+            return show('0', '删除失败');
+        } catch (Exception $e) {
+            return show('0', $e->getMessage());
+        }
+    }
+
 
 }

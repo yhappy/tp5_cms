@@ -67,3 +67,9 @@ function getLoginuser()
 {
     return session('adminUser');
 }
+
+function getHomeMenuNameById($id)
+{
+    $nameArray = \app\admin\model\MenuModel::getHomeMenu();
+    return $nameArray[$id];
+}
