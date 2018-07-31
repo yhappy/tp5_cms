@@ -48,9 +48,9 @@ class Slide extends CommonController
     }
 
 
-    /*
-   insert to slide
-    */
+    /**
+     *   insert to slide
+     */
     public function insert()
     {
         if (!$_POST && !isset($_POST['slide'])) {
@@ -78,9 +78,9 @@ class Slide extends CommonController
         return show('1', '', $data);
     }
 
-    /*
-   update listorder
-    */
+    /**
+     *  update listorder
+     */
     public function listorder()
     {
         if (!$_POST) {

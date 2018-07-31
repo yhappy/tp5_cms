@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+{include file="index/head" /}
+<body>
+<div class="wrapper">
+    {include file="index/header" /}
+    {include file="index/sidebar" /}
+
+
+    <div class="content-wrapper">
+        <div class="content-header">
+            <ul class="breadcrumb">
+                <li><a href="__ADMIN__"><i class="icon icon-home"></i></a></li>
+                <li><a href="__ADMIN__/info"> 网站信息</a></li>
+                <li class="active"> 管理</li>
+            </ul>
+        </div>
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title"> 网站信息</div>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" id="form_add">
+                            <div class="form-group">
+                                <label for="name" class="col-sm-2">网站名称:</label>
+                                <div class="col-md-6 col-sm-10">
+                                    <input type="text" class="form-control" id="name" name="name"
+                                           placeholder="网站的名字" value="{$info['name']}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="keyword" class="col-sm-2">关键字:</label>
+                                <div class="col-md-6 col-sm-10">
+                                    <input type="text" class="form-control" id="keyword" name="keyword"
+                                           placeholder="网站的关键字" value="{$info['keyword']}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="discription" class="col-sm-2">描述:</label>
+                                <div class="col-md-6 col-sm-10">
+                                    <textarea class="form-control" id="discription" name="discription"
+                                              placeholder="网站的描述">{$info['discription']}</textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{include file="index/footer" /}
+<script>
+    let url_add = "__ADMIN__/info/add";
+
+    $(".form-control").change(function () {
+        console.log(this.name);
+        let data = {};
+        data[this.name] = this.value;
+        let url;
+        url = url_add;
+        $.post(url, data, function (result) {
+            if (result.status === 0) {
+                new $.zui.Messager(result.message, {
+                    type: 'danger' // 定义颜色主题
+                }).show();
+            }
+            if (result.status === 1) {
+                new $.zui.Messager(result.message, {
+                    type: 'success' // 定义颜色主题
+                }).show();
+            }
+        }, "JSON");
+    });
+
+</script>
+
+</body>
+</html>

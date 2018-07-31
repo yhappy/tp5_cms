@@ -94,7 +94,7 @@ class Menu extends CommonController
             return $this->fetch('index/menu/edit');
         }
 
-        return $this->redirect(config('__ADMIN__') . '/menu');
+        return redirect(config('__ADMIN__') . '/menu');
     }
 
     /**
@@ -120,7 +120,7 @@ class Menu extends CommonController
     public function delete()
     {
         if (!$_POST) {
-            return $this->redirect(config('__ADMIN__') . '/menu');
+            return redirect(config('__ADMIN__') . '/menu');
         } elseif (!isset($_POST['id'])) {
             return show('0', '数据有误');
         }
@@ -145,7 +145,7 @@ class Menu extends CommonController
     {
         $temp = false;
         if (!$_POST) {
-            return $this->redirect(config('__ADMIN__') . '/menu');
+            return redirect(config('__ADMIN__') . '/menu');
         }
         try {
             foreach ($_POST as $id => $value) {

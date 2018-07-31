@@ -185,7 +185,8 @@ class News extends CommonController
             $this->assign('content', $content);
             return $this->fetch('index/news/edit');
         }
-        return $this->redirect('list');
+        return redirect(config('__ADMIN__') . '/news');
+
     }
 
     /**
@@ -212,7 +213,7 @@ class News extends CommonController
     public function delete()
     {
         if (!$_POST) {
-            return $this->redirect('list');
+            return redirect(config('__ADMIN__') . '/news');
         } elseif (!isset($_POST['id'])) {
             return show('0', '数据有误');
         }
@@ -236,7 +237,7 @@ class News extends CommonController
     public function listorder()
     {
         if (!$_POST) {
-            return $this->redirect('list');
+            return redirect(config('__ADMIN__') . '/news');
         }
         try {
             $id = intval($_POST['id']);
